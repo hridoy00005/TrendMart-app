@@ -1,0 +1,11 @@
+export {default as Home} from "./Home";
+export {default as Login} from "./Login";
+export {default as Ragistration} from "./Ragistration";
+export {default as Profile} from "./Profile";
+export {default as NotFound} from "./NotFound";
+export {default as Categories} from "./Categories";
+export {default as ProductDetails} from "./ProductDetails";
+export {default as Orders} from "./Orders";
+export {default as Fabourites} from "./Fabourites";
+export {default as Address} from "./Address";
+export {default as Accounts} from "./Accounts";
