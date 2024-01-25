@@ -5,6 +5,7 @@ const Ragistration = () => {
   const [regState, setRegState] = useState({
     name:"",
     email:"",
+    phone:"",
     password:"",
     confirmPassword:""
   })
@@ -25,6 +26,7 @@ const Ragistration = () => {
       <h2 className="text-center bg-slate-500 py-3 text-white text-xl font-bold rounded-lg">Ragistration</h2>
       <CInput label="Name" type="text" placeholder="Enter Name" name="name" value={regState.name} onChange={handleChange}  />
       <CInput label="Email" type="email" placeholder="Enter Your Email" name="email" value={regState.email} onChange={handleChange}  />
+      <CInput label="Phone" type="phone" placeholder="Enter Your Phone" name="phone" value={regState.phone} onChange={handleChange}  />
       <CInput label="Password" type="password" placeholder="Enter Password" name="password" value={regState.password} onChange={handleChange}  />
       <CInput label="Confirm Password" type="confirmPassword" placeholder="Confirm Password" name="confirmPassword" value={regState.confirmPassword} onChange={handleChange}  />
       <CButton className="bg-sky-400" type="primary" name="Submit" onClick={handleRegistration} disabled={disabled} />
