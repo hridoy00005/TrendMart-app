@@ -1,19 +1,22 @@
 import axios from "axios";
 
-axios.defaults.baseURL="https://localhost:5000/";
+axios.defaults.baseURL="http://localhost:5000/";
 
-const token = JSON.parse(localStorage?.getItem("persist:auth")?.token) || "";
+const token = JSON.parse(localStorage?.getItem("persist:auth"))?.token || "";
+
 
 class ApiCofigaration{
     constructor(){
-        this.post = async (endpoint, data)=>{
+        this.post = async (endpoint, data) => {
             try {
-                const res = await axios.post(endpoint, data, {headers: {Authorization: token?`Bearer ${JSON.parse(token)}`: ""}})
-                return res.data;
+              const res = await axios.post(endpoint, data, {
+                headers: { Authorization: token ? `Bearer ${JSON.parse(token)}` : "" },
+              });
+              return res.data;
             } catch (error) {
-                console.log(error);
+              console.log(error);
             }
-        }
+          };
 
         this.put = async (endpoint, id, data)=>{
             try {

@@ -1,33 +1,48 @@
 import React, { useState } from "react";
 import { CButton, CInput } from "../components/commons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { api, auth } from "../api";
+import { useDispatch } from "react-redux";
+import { loginReducer } from "../store/reducers/authReducer";
 
 const Login = () => {
   const [loginState, setLoginState] = useState({
-    name:"",
+    email:"",
     password:""
   })
-
+  const dispatch = useDispatch();
+const navigate = useNavigate();
+const [loding, setLoding] = useState(false);
 const handleChange = (e)=>{
   const {name, value} = e.target;
   setLoginState({...loginState, [name]:value});
 }
 
-const hendleLogin = () =>{
-  
+const hendleLogin = async() =>{
+  setLoding(true);
+  try {
+    const res = await api.post(auth.login, loginState);
+    if(res.success){
+      dispatch(loginReducer({user: res?.user, token: res?.token}))
+      navigate("/");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  setLoding(false);
 }
 
-const disabled = !loginState.name || !loginState.password;
+const disabled = !loginState.email || !loginState.password;
   return (
     <div className="bg-slate-300 min-h-screen flex justify-center items-center">
       <div className="w-[98%] sm:w-96 md:w-[450px] h-full p-3 bg-slate-400 shadow-lg rounded-lg">
-        <h2 className="text-center bg-slate-500 py-3 text-white text-xl font-bold rounded-lg">Login</h2>
-        <CInput label="Name" type="text" placeholder="Enter Name" name="name" value={loginState.name} onChange={handleChange}  />
+        <h2 className="text-center bg-slate-700 py-3 text-white text-xl font-bold rounded-lg">Login</h2>
+        <CInput label="Email" type="text" placeholder="Enter Email" name="email" value={loginState.email} onChange={handleChange}  />
         <CInput label="Password" type="password" placeholder="Enter Password" name="password" value={loginState.password} onChange={handleChange}  />
         
         <span className="flex justify-between ">
-          <Link className="text-blue-900 hover:text-sky-600 hover:underline" to="/forgotPassword">Forgot Password?</Link>
-          <Link className="text-blue-900 hover:text-sky-600 hover:underline" to="/registration">Create New Account</Link>
+          <Link className="text-sm text-blue-900 hover:text-white hover:underline hover:font-semibold" to="/forgotPassword">Forgot Password?</Link>
+          <Link className="text-sm text-blue-900 hover:text-white hover:underline hover:font-semibold" to="/registration">Create New Account</Link>
           </span>
         <CButton className="bg-sky-400" type="primary" name="Login" onClick={hendleLogin} disabled={disabled} />
       </div>

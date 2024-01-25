@@ -3,12 +3,14 @@ import {
   Address,
   Categories,
   Fabourites,
+  ForgetPassword,
   Home,
   Login,
   Orders,
   ProductDetails,
   Profile,
   Ragistration,
+  ResetPassword,
 } from "../pages";
 
 export const publicRoutes = [
@@ -20,6 +22,8 @@ export const publicRoutes = [
 export const authRoutes = [
   { path: "/login", element: <Login /> },
   { path: "/registration", element: <Ragistration /> },
+  { path: "/forget-password", element: <ForgetPassword /> },
+  { path: "/reset-password", element: <ResetPassword /> },
 ];
 
 export const privateRoutes = [
