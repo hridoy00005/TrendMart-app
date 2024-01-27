@@ -1,5 +1,4 @@
 import {
-  Accounts,
   Address,
   Categories,
   Fabourites,
@@ -31,5 +30,4 @@ export const privateRoutes = [
   { path: "/orders", element: <Orders /> },
   { path: "/fabourites", element: <Fabourites /> },
   { path: "/address", element: <Address /> },
-  { path: "/accounts", element: <Accounts /> },
 ];

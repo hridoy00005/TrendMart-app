@@ -41,10 +41,10 @@ const disabled = !loginState.email || !loginState.password;
         <CInput label="Password" type="password" placeholder="Enter Password" name="password" value={loginState.password} onChange={handleChange}  />
         
         <span className="flex justify-between ">
-          <Link className="text-sm text-blue-900 hover:text-white hover:underline hover:font-semibold" to="/forgotPassword">Forgot Password?</Link>
+          <Link className="text-sm text-blue-900 hover:text-white hover:underline hover:font-semibold" to="/forget-password">Forgot Password?</Link>
           <Link className="text-sm text-blue-900 hover:text-white hover:underline hover:font-semibold" to="/registration">Create New Account</Link>
           </span>
-        <CButton className="bg-sky-400" type="primary" name="Login" onClick={hendleLogin} disabled={disabled} />
+        <CButton name="Login" onClick={hendleLogin} disabled={disabled} />
       </div>
     </div>
   );

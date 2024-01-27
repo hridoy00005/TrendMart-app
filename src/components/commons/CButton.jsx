@@ -2,8 +2,9 @@ import { Button } from "antd";
 import React from "react";
 
 const CButton = ({
-  className = "primary",
-  type,
+  danger=false,
+  className="mt-2 text-center",
+  type = "primary",
   size = "large",
   name,
   value,
@@ -11,9 +12,10 @@ const CButton = ({
   disabled=false
 }) => {
   return (
-    <div className="mt-2 text-center">
+    <div className={className}>
       <Button
-        className={className}
+      className="bg-sky-400"
+      danger={danger}
         size={size}
         type={type}
         name={name}

@@ -28,7 +28,7 @@ const ForgetPassword = () => {
         <h2 className="text-center bg-slate-700 py-3 text-white text-xl font-bold rounded-lg">Enter Email to Confirm Account</h2>
         <CInput label="Email" type="text" placeholder="Enter Your Email" name="email" value={email} onChange={handleChange}  />        
         
-        <CButton className="bg-sky-400" type="primary" name="Login" onClick={hendleSubmit} disabled={disabled} />
+        <CButton name="Send" onClick={hendleSubmit} disabled={disabled} />
       {check && <h2 className='text-center font-semibold text-blue-800 pt-2'>Check Your Email and Confirm</h2>}
       </div>
     </div>

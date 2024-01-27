@@ -1,8 +1,11 @@
-import React from 'react'
+import React from "react";
+import AccountLayout from "../layouts/AccountLayout";
 
 const Address = () => {
   return (
-    <div>Address</div>
+    <AccountLayout>
+      Address
+    </AccountLayout>
   )
 }
 

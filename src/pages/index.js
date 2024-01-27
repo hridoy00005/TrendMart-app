@@ -8,6 +8,5 @@ export {default as ProductDetails} from "./ProductDetails";
 export {default as Orders} from "./Orders";
 export {default as Fabourites} from "./Fabourites";
 export {default as Address} from "./Address";
-export {default as Accounts} from "./Accounts";
 export {default as ForgetPassword} from "./ForgetPassword";
 export {default as ResetPassword} from "./ResetPassword";

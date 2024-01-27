@@ -45,7 +45,7 @@ const navigate = useNavigate();
       <CInput label="Password" type="password" placeholder="Enter Password" name="password" value={regState.password} onChange={handleChange}  />
       <CInput label="Confirm Password" type="password" placeholder="Confirm Password" name="confirmPassword" value={regState.confirmPassword} onChange={handleChange}  />
       <Spin spinning={loding}>
-      <CButton className="bg-sky-400" type="primary" name="Submit" onClick={handleRegistration} disabled={disabled} />
+      <CButton name="Submit" onClick={handleRegistration} disabled={disabled} />
       </Spin>
     </div>
   </div>

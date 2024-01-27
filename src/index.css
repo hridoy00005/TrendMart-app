@@ -14,3 +14,11 @@ h1,h2,h3,h4{
     font-family: 'Playfair Display', serif;
     letter-spacing: 0.5px;
 }
+
+/* Account Options Styles */
+.account-option {
+    @apply bg-slate-300 hover:bg-blue-900 text-center py-1 px-3 rounded-lg hover:text-white;
+  }
+  .account-option-active {
+    @apply bg-blue-900 text-center py-1 px-3 rounded-lg text-white;
+  }

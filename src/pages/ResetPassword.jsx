@@ -38,7 +38,7 @@ const handleChange = (e)=>{
       <CInput label="Password" type="password" placeholder="Enter Password" name="password" value={reset.password} onChange={handleChange}  />
       <CInput label="Confirm Password" type="password" placeholder="Confirm Password" name="confirmPassword" value={reset.confirmPassword} onChange={handleChange}  />
       <Spin spinning={loding}>
-      <CButton className="bg-sky-400" type="primary" name="Submit" onClick={handleReset} disabled={disabled} />
+      <CButton name="Submit" onClick={handleReset} disabled={disabled} />
       </Spin>
     </div>
   </div>
