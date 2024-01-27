@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spin } from "antd";
 import { updateProfile } from "../../store/reducers/authReducer";
@@ -23,7 +23,7 @@ const BasicInfo = () => {
   const onProfileUpdate = async () => {
     setLoading(true);
     try {
-      const result = await api.put(auth.editProfile, user._id, update);
+      const result = await api.post(auth.editProfile, {profileData: update});
       notify(result);
       if (result?.success) {
         dispatch(updateProfile(update));
