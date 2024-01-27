@@ -6,7 +6,7 @@ import { Pagination, Rate } from "antd";
 const Fabourites = () => {
   return (
     <AccountLayout>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 bg-white border border-black rounded-lg p-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 bg-white p-2">
             <div className="mx-auto">
               <Link to="/productdetails">
                 {/* <img src="/img/default.jpg" alt="item" /> */}

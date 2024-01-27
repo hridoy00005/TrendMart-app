@@ -6,7 +6,7 @@ import { Pagination, Rate } from "antd";
 const Orders = () => {
   return (
     <AccountLayout>
-      <div className="gap-5 bg-white border border-black rounded-lg p-2">
+      <div className="gap-5 bg-white border rounded-lg p-2">
             <div className="mx-auto my-3">
               <Link to="/productdetails" className="flex">
                 {/* <img src="/img/default.jpg" alt="item" /> */}
