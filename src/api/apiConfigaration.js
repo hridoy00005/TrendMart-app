@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL="http://localhost:5000/";
+axios.defaults.baseURL="http://localhost:5000";
 
 const token = JSON.parse(localStorage?.getItem("persist:auth"))?.token || "";
 
@@ -18,10 +18,22 @@ class ApiCofigaration{
             }
           };
 
+          this.get = async (endpoint, params) => {
+            try {
+              const res = await axios.get(endpoint, {
+                params: { ...params },
+                headers: { Authorization: token ? `Bearer ${JSON.parse(token)}` : "" },
+              });
+              return res.data;
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          
         this.put = async (endpoint, id, data)=>{
             try {
-                const res = await axios.put(endpoint+id, {...data}, {headers:{Authorization: token?`Bearer${JSON.parse(token)}`:""}});
-                return res;
+                const res = await axios.put(endpoint+id, {...data}, {headers:{Authorization: token?`Bearer ${JSON.parse(token)}`:""}});
+                return res.data;
             } catch (error) {
                 console.log(error);
             }

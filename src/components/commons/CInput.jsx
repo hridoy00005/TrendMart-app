@@ -12,7 +12,7 @@ const CInput = ({
 }) => {
   return (
     <div className="py-3">
-      <label className="font-semibold">{label}</label>
+      <h2 className="font-semibold">{label}</h2>
       <Input
         size="large"
         type={type}

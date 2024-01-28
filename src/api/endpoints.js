@@ -8,3 +8,10 @@ export const auth = {
   editProfile: "/auth/edit-profile/",
   changeEmailRequest: "/auth/change-email-request/",
 };
+
+export const address = {
+  getAddress:"/address/",
+  createAddress:"/address/create/",
+  editAddress:"/address/edit/",
+  deleteAddress:"/address/delete/",
+}
