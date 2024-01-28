@@ -10,7 +10,7 @@ const PublicLayout = ({ children }) => {
       <div className="text-right text-sm text-slate-500 pr-8 pt-1">Hotline:111000</div>
       <Navbar />
 
-      <div className=" sm:px-8 mx-auto">{children}</div>
+      <div className=" sm:px-5 mx-auto">{children}</div>
 
       {/* This is footer section */}
       <Footer />

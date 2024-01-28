@@ -43,8 +43,10 @@ const AddressForm = ({fetchAddress}) => {
         try {
             const res = await api.post(address.createAddress, {address:location});
             notify(res);
-            if(res){
+            if(res.success){
+                closeModal();
                 fetchAddress();
+                setLocation({name:"", phone:"", address: "",})
             }
         } catch (error) {
             console.log(error);
@@ -52,9 +54,13 @@ const AddressForm = ({fetchAddress}) => {
         setLoadAdress(false);
     }
 
+    const disabled = !location.name || !location.phone || !location.district || !location.upazila ||!location.address;
+
   return (
-    <div className="ml-2">
-        <CButton className="mx-auto my-auto" name="Add Address" onClick={showModal} />
+    <div className="">
+        <div className='text-center sm:text-right '>
+        <CButton className="mx-7 my-auto" name="Add Address" onClick={showModal} />
+        </div>
           <Spin spinning={loadAddress} size='large'>
             <Modal
                 title="Add Address"
@@ -113,7 +119,7 @@ const AddressForm = ({fetchAddress}) => {
                     />
                 </div>
 
-                <CButton className="mt-3 text-center" name="Save Address" onClick={onSave} />
+                <CButton className="mt-3 text-center" name="Save Address" onClick={onSave} disabled={disabled} />
             </Modal>
           </Spin>
       </div>

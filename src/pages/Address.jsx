@@ -4,11 +4,15 @@ import AddressForm from "../components/address/AddressForm";
 import { address, api } from "../api";
 import { notify } from "../utils/notification";
 import AddressCard from "../components/address/AddressCard";
+import { Spin } from "antd";
 
 const Address = () => {
   const [addresses, setAddresses] = useState([]);
+  const [loader, setLoader] = useState(false);
 
+  //Fetching Addresses
   const fetchAddress = async () => {
+    setLoader(true);
     try {
       const res = await api.get(address.getAddress);
       if (res.success) {
@@ -18,6 +22,7 @@ const Address = () => {
     } catch (error) {
       console.log(error);
     }
+    setLoader(false);
   };
   console.log(addresses);
 
@@ -26,17 +31,17 @@ const Address = () => {
   }, []);
 
   return (
-    <AccountLayout>
-      <AddressForm fetchAddress={fetchAddress} />
-      <div className="grid grid-cols-1 sm:grid-cols-3 mt-3">
-        {addresses.map((address)=>(
-          <AddressCard key={address._id} adata={address} fetchAddress={fetchAddress} />
-        ))}
-        
-        {/* <AddressCard />
-        <AddressCard /> */}
-      </div>
-    </AccountLayout>
+    <Spin spinning={loader} size="large">
+      <AccountLayout>
+        <AddressForm fetchAddress={fetchAddress} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center mt-3">
+          {addresses.map((address)=>(
+            <AddressCard key={address._id} adata={address} fetchAddress={fetchAddress} />
+          ))}
+        </div>
+      </AccountLayout>
+    </Spin>
+    
   );
 };
 

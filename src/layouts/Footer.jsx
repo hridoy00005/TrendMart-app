@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     // <footer className='w-full bottom-0 h-[80px] bg-slate-500'>Footer</footer>
     <footer className="bg-sky-900 mt-8 text-white">
-      <div className="grid grid-cols-12 px-8">
+      <div className="grid grid-cols-12 px-5">
         <div className="col-span-12 md:col-span-3 p-5 text-center md:text-left">
           <h1 className="text-lg md:text-lg lg:text-xl font-semibold mb-1 sm:mb-2">
             About Us

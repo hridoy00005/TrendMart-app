@@ -1,8 +1,9 @@
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Avatar, Card } from 'antd';
+import { Avatar, Card, Popconfirm } from 'antd';
 import EditForm from './EditForm';
 import { useState } from 'react';
 import { address, api } from '../../api';
+import { notify } from '../../utils/notification';
 const { Meta } = Card;
 
 const AddressCard = ({adata, fetchAddress}) => {
@@ -20,7 +21,7 @@ const AddressCard = ({adata, fetchAddress}) => {
             console.log(error);
         }
     }
-    
+
     const showModal = () => {
         setIsModalOpen(true);
       };
@@ -29,11 +30,21 @@ const AddressCard = ({adata, fetchAddress}) => {
     <Card
     style={{
       width: 300,
+      margin:10,
     }}
     actions={[
       <EditOutlined key="edit" onClick={showModal} style={{color: 'blue'}} />,
-    // <span className='text-red-600 hover:text-green-600 cursor-pointer' onClick={ondelete}><i className="fa-solid fa-trash" ></i></span>,
-    <DeleteOutlined key="delete" onClick={onDelete} style={{color: 'red'}} />,
+        <Popconfirm
+            title="Delete The Address"
+            description="Are you sure to delete this address?"
+            okText="Yes"
+            cancelText="No"
+            okType="danger"
+            onConfirm={onDelete}
+        >
+            <DeleteOutlined key="delete" style={{color: 'red'}} />
+        </Popconfirm>,
+
     ]}
   >
     <Meta

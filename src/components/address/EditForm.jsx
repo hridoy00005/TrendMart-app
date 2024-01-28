@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CButton, CInput, CSelect } from "../commons";
 import { Input, Modal, Spin } from "antd";
 import districts from "../../utils/geo_bd/districts.json";
@@ -27,6 +27,17 @@ const EditForm = ({isModalOpen, setIsModalOpen, adata, fetchAddress}) => {
     //Filtered Upazilas State
     const [filteredUpazilas, setFilteredUpazilas] = useState([]);
 
+    // Select Dristrict and filtered Upazillas
+    const selectDistrict =(name) => {
+        setUpdateData({ ...updateData, district: name });
+        const { id } = districts.find((ds) => ds.name === name);
+        const filteredUpazilas = upazila.filter(
+        (up) => up.district_id === id
+        );
+        console.log(filteredUpazilas);
+        setFilteredUpazilas([...filteredUpazilas.map((upz) => upz.name)]);
+    }
+
     const onchange = (e)=>{
         const {name, value} = e.target;
         setUpdateData({...updateData, [name]:value})
@@ -48,6 +59,10 @@ const EditForm = ({isModalOpen, setIsModalOpen, adata, fetchAddress}) => {
         setLoadAdress(false);
     }
 
+    useEffect(()=>{return selectDistrict(adata.district)},[]);
+
+    const disabled = !updateData.name || !updateData.phone ||!updateData.address || (updateData.name == adata.name && updateData.phone === adata.phone && updateData.district === adata.district && updateData.upazila === adata.upazila && updateData.address === adata.address)
+    
   return (
     <Spin spinning={loadAddress} size='large'>
             <Modal
@@ -67,15 +82,7 @@ const EditForm = ({isModalOpen, setIsModalOpen, adata, fetchAddress}) => {
                         showSearch
                         placeholder="Select District"
                         options={districts.map((dst) => dst.name)}
-                        onChange={(name) => {
-                            setUpdateData({ ...updateData, district: name });
-                            const { id } = districts.find((ds) => ds.name === name);
-                            const filteredUpazilas = upazila.filter(
-                            (up) => up.district_id === id
-                            );
-                            console.log(filteredUpazilas);
-                            setFilteredUpazilas([...filteredUpazilas.map((upz) => upz.name)]);
-                        }}
+                        onChange={selectDistrict}
                         value={updateData.district}
                     />
                 </div>
@@ -107,7 +114,7 @@ const EditForm = ({isModalOpen, setIsModalOpen, adata, fetchAddress}) => {
                     />
                 </div>
 
-                <CButton className="mt-3 text-center" name="Update Address" onClick={onSave} />
+                <CButton className="mt-3 text-center" name="Update Address" onClick={onSave} disabled={disabled} />
             </Modal>
           </Spin>
   )
