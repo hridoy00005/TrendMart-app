@@ -1,57 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "antd";
 import { Link } from "react-router-dom";
 import { categories } from "./menu";
+import { api } from "../../api/apiConfigaration";
+import { category } from "../../api/endpoints";
 
 const Categories = () => {
-  const getSubcategory = (subcategory = []) => {
-    const sub = subcategory.map(({ _id, icon, children, name }) => ({
+  const [menus, setMenus] = useState([]);
+  const [loder, setLoader] = useState(false);
+  const getSubcategory = (subcategories = []) => {
+    const sub = subcategories.map(({ _id, iconClass, title }) => ({
       key: _id,
       label: (
-        <Link to={`/subcategory/${_id}`}>
-          {name}
+        <Link to={`/subcategory/${_id}`} className="hover:bg-gray-600 w-full">
+          {title}
         </Link>
       ),
-      icon: <img className="w-6" src={icon} alt="" />,
-      children: children ? getChildren(children) : undefined,
-      style:{width:"180px"},
+      icon: <img className="w-6" src={iconClass} alt="" />,
+      // children: children ? getChildren(children) : undefined,
+      style:{width:"200px", fontSize:"18px" },
     }));
     return sub;
   };
 
-  // make children format
-  const getChildren = (children) => {
-    const ch = children.map(({ _id, iconClass, name }) => ({
-      key: _id,
-      label: (
-        <Link to={`/children/${_id}`}>
-          {/* <span className="mr-1">
-            <i className={iconClass}></i>
-          </span>{" "} */}
-          {name}
-        </Link>
-      ),
-      icon: <i className={iconClass}></i>,
-      style:{width:"180px"}
-    }));
-    return ch;
-  };
+  // Category Fetching
+  const fetchCategories = async()=>{
+    setLoader(true)
+    try {
+      const res = await api.get(category.getMenu);
+      if(res.success){setMenus(res.result)}
+    } catch (error) {
+      console.log(error)
+    }
+    setLoader(false)
+  }
 
+  // console.log(menus);
+  useEffect(()=>{fetchCategories()}, []);
   return (
     <div className="flex my-auto">
-      {categories.map((ct) => (
+      {menus.map((menu) => (
         <Dropdown
-          key={ct._id}
-          menu={{ items: getSubcategory(ct?.subcategory) }}
+          key={menu._id}
+          menu={{ items: getSubcategory(menu?.subcategories) }}
           placement="bottomLeft"
           arrow
           className="mr-1 sm:mr-3 md:mr-5"
         >
           <Link
-            to={`/categories/${ct?._id}`}
+            to={`/categories/${menu?._id}`}
             className="text-white sm:text-base md:text-lg font-semibold hover:underline"
           >
-            <img src={ct.icon} alt="" /> {ct?.name}
+            <img src={menu.iconClass} alt="" /> {menu?.title}
           </Link>
         </Dropdown>
       ))}

@@ -10,3 +10,5 @@ export {default as Fabourites} from "./Fabourites";
 export {default as Address} from "./Address";
 export {default as ForgetPassword} from "./ForgetPassword";
 export {default as ResetPassword} from "./ResetPassword";
+export {default as Subcategories} from "./Subcategories";
+export {default as TrendingProducts} from "./TrendingProducts";

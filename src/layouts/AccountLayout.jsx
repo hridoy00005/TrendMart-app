@@ -7,7 +7,7 @@ const AccountLayout = ({children}) => {
   return (
     <PublicLayout>
       <div className=" min-h-screen">
-          {/* Products Categories */}
+          {/* Accounts Categories */}
           <div className="flex flex-wrap justify-around items-end border py-3 bg-slate-300 border-blue-950 text-black text-base sm:text-lg font-semibold rounded-lg mb-3">
             <Link to={"/orders"} className={location?.pathname==="/orders"?"account-option-active":"account-option"}>
               <h2>Orders</h2>

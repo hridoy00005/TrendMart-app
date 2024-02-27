@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,6 +14,7 @@ h1,h2,h3,h4{
     letter-spacing: 0.5px;
 }
 
+
 /* Account Options Styles */
 .account-option {
     @apply bg-slate-300 hover:bg-blue-900 text-center py-1 px-3 rounded-lg hover:text-white;
@@ -22,3 +22,18 @@ h1,h2,h3,h4{
   .account-option-active {
     @apply bg-blue-900 text-center py-1 px-3 rounded-lg text-white;
   }
+  
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.quantiy-input-input .ant-input{
+  text-align: center !important;
+}

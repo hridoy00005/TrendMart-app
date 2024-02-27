@@ -15,3 +15,19 @@ export const address = {
   editAddress:"/address/edit/",
   deleteAddress:"/address/delete/",
 }
+
+export const category = {
+  getCategory:"/category/",
+  getMenu:"/category/menu",
+  getSingleCategory:"/category/"
+}
+
+export const subcategory = {
+  getSubcategory:"product/subcategory/",
+  getMenu:"/subcategory/menu",
+  getSingleSubcategory:"/subcategory/"
+}
+
+export const product = {
+  getProduct:"/product/",
+}

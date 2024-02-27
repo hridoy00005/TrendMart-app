@@ -10,12 +10,14 @@ import {
   Profile,
   Ragistration,
   ResetPassword,
+  Subcategories,
 } from "../pages";
 
 export const publicRoutes = [
   { path: "/", element: <Home /> },
   { path: "/categories/:id", element: <Categories /> },
-  { path: "/productdetails", element: <ProductDetails /> },
+  { path: "/subcategory/:id", element: <Subcategories /> },
+  { path: "/productdetails/:id", element: <ProductDetails /> },
 ];
 
 export const authRoutes = [
