@@ -12,13 +12,13 @@ const Categories = () => {
     const sub = subcategories.map(({ _id, iconClass, title }) => ({
       key: _id,
       label: (
-        <Link to={`/subcategory/${_id}`} className="hover:bg-gray-600 w-full">
+        <Link to={`/subcategory/${_id}`} className="p-2 text-base md:text-lg w-full">
           {title}
         </Link>
       ),
-      icon: <img className="w-6" src={iconClass} alt="" />,
+      // icon: <img className="w-6" src={iconClass} alt="" />,
       // children: children ? getChildren(children) : undefined,
-      style:{width:"200px", fontSize:"18px" },
+      style:{width:"200px"},
     }));
     return sub;
   };

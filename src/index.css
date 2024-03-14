@@ -23,7 +23,8 @@ h1,h2,h3,h4{
     @apply bg-blue-900 text-center py-1 px-3 rounded-lg text-white;
   }
   
-  input::-webkit-outer-spin-button,
+/* Input arrow removed */
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -33,6 +34,13 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.ant-dropdown-menu-item-active:hover{
+  background-color: rgb(203 213 225)!important;
+  /* color: white!important; */
+  /* transition-duration: 300ms; */
+}
+
 
 .quantiy-input-input .ant-input{
   text-align: center !important;
