@@ -2,7 +2,7 @@ import React from "react";
 
 const Quantity = ({
   quantity = {},
-  setQuantity = {}
+  setQuantity
 }) => {
   //Quantity Changing
   const handleQuantityChange = (e) => {

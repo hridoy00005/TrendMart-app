@@ -1,37 +1,49 @@
 import React, { useEffect, useState } from "react";
 import PublicLayout from "../layouts/PublicLayout";
-import {  Rate, Spin } from "antd";
+import { Rate, Spin } from "antd";
 import { api } from "../api/apiConfigaration";
 import { product } from "../api/endpoints";
 import { useParams } from "react-router-dom";
-import { ProductSizes, ProductSlider, Quantity } from "../components/productDetails";
+import {
+  ProductSizes,
+  ProductSlider,
+  Quantity,
+} from "../components/productDetails";
+import { useDispatch } from "react-redux";
+import { addCart } from "../store/reducers/cartReducer";
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [singleProduct, setSingleProduct] = useState(); //Fatched Product
-  const [size, setSize] = useState();
   const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState();
   const [loader, setLoader] = useState(false);
-  const [currentImage, setCurrentImage] = useState()// current image
-  const [addToCart, setAddToCart] =useState({
-    product:singleProduct,
-    size:"",
-    quantity:quantity
-  })
+  const [currentImage, setCurrentImage] = useState(); // current image
+
+  // Adding to Cart
+  const handleAddToCart = () => {
+    const payload = { product: singleProduct, quantity, size };
+    console.log("Payload");
+    console.log(payload);
+    dispatch(addCart(payload));
+  };
 
   //Fetch Product
   const fetchProduct = async () => {
-    setLoader(true);
     try {
+      setLoader(true);
       const res = await api.get(product.getProduct + id);
       if (res.success) {
         setSingleProduct(res.result);
-        setCurrentImage(res.result.images[0])
+        setCurrentImage(res.result.images[0]);
       }
     } catch (error) {
       console.log(error);
     }
-    setLoader(false);
+    finally{
+      setLoader(false);
+    }
   };
 
   useEffect(() => {
@@ -46,15 +58,18 @@ const ProductDetails = () => {
         <div className="col-span-12 sm:col-span-6 sm:mr-3">
           <Spin spinning={loader}>
             <img
-              // src="/img/t-shirt2.jpg"
-              src={currentImage?currentImage:singleProduct?.images[0]}
+              src={currentImage ? currentImage : singleProduct?.images[0]}
               alt="Image"
               className=" h-[350px] mb-2 mx-auto"
             />
           </Spin>
           {/* slider */}
           <div>
-            <ProductSlider images={singleProduct?.images} currentImage={currentImage} setCurrentImage={setCurrentImage} />
+            <ProductSlider
+              images={singleProduct?.images}
+              currentImage={currentImage}
+              setCurrentImage={setCurrentImage}
+            />
           </div>
         </div>
 
@@ -71,32 +86,49 @@ const ProductDetails = () => {
           </h5>
 
           {/* Price */}
-          <div className="font-semibold pb-3">
-            <span className="text-lg text-red-600">
-              Price: ৳{singleProduct?.discountPrice}{" "}
-            </span>
-            <del className="text-xs text-gray-500">৳{singleProduct?.price}</del>
-            <span className="bg-red-600 rounded-lg px-2 text-xs text-white mx-2">
-              -
-              {(
-                100 -
-                (singleProduct?.discountPrice / singleProduct?.price) * 100
-              ).toFixed(2)}
-              %
-            </span>
-          </div>
+          {singleProduct?.discountAvailable ? (
+            <div className="font-semibold pb-3">
+              <span className="text-lg text-red-600">
+                Price: ৳{singleProduct?.discountPrice}{" "}
+              </span>
+              <del className="text-xs text-gray-500">
+                ৳{singleProduct?.price}
+              </del>
+              <span className="bg-red-600 rounded-lg px-2 text-xs text-white mx-2">
+                -
+                {(
+                  100 -
+                  (singleProduct?.discountPrice / singleProduct?.price) * 100
+                ).toFixed(2)}
+                %
+              </span>
+            </div>
+          ) : (
+            <div className="font-semibold pb-3">
+              <span className="text-lg text-red-600">
+                Price: ৳{singleProduct?.price}
+              </span>
+            </div>
+          )}
 
           {/* Sizes of the Product */}
-          {singleProduct?.sizeAvaible===true && <ProductSizes sizes={singleProduct.sizes} setSize={setSize} />}
+          {singleProduct?.sizeAvaible === true && (
+            <ProductSizes
+            singleProduct={singleProduct}
+              size={size}
+              setSize={setSize}
+            />
+          )}
 
           {/* Quantity */}
           <Quantity quantity={quantity} setQuantity={setQuantity} />
-        
+
           {/* Add Button */}
           <div className="text-center font-semibold sm:text-left w-full">
             <button
               type="button"
               className="border py-3 sm:py-4 px-3 sm:px-4 mb-3 rounded duration-[.4s] bg-orange-600 hover:bg-red-600 text-white"
+              onClick={handleAddToCart}
             >
               Add to Cart
             </button>
