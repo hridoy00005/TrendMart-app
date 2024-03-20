@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import PublicLayout from "../layouts/PublicLayout";
 import { InputNumber, Pagination, Rate, Slider, Spin } from "antd";
 import { api } from "../api/apiConfigaration";
 import { category, product } from "../api/endpoints";
@@ -37,7 +36,6 @@ const Categories = () => {
     fetchItems();
   }, [id]);
   return (
-    <PublicLayout>
       <div className=" min-h-screen grid grid-cols-12">
         <div className="col-span-12 sm:col-span-2 mr-2">
           <h2 className="text-lg font-bold border-b border-black">Filter</h2>
@@ -141,7 +139,6 @@ const Categories = () => {
           </Spin>
         </div>
       </div>
-    </PublicLayout>
   );
 };
 

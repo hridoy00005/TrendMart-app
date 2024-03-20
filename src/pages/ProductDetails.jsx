@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PublicLayout from "../layouts/PublicLayout";
 import { Rate, Spin } from "antd";
 import { api } from "../api/apiConfigaration";
 import { product } from "../api/endpoints";
@@ -34,10 +33,8 @@ const ProductDetails = () => {
     try {
       setLoader(true);
       const res = await api.get(product.getProduct + id);
-      if (res.success) {
         setSingleProduct(res.result);
         setCurrentImage(res.result.images[0]);
-      }
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +49,6 @@ const ProductDetails = () => {
 
   console.log(singleProduct);
   return (
-    <PublicLayout>
       <div className="grid grid-cols-12 bg-white p-2">
         {/*Product Images */}
         <div className="col-span-12 sm:col-span-6 sm:mr-3">
@@ -76,7 +72,7 @@ const ProductDetails = () => {
         {/* Product Informations */}
         <div className="col-span-12 sm:col-span-6 text-sm">
           <h2 className="text-xl font-extrabold pb-3">{singleProduct?.name}</h2>
-          <p className="text-base">{singleProduct?.description}</p>
+          <div className="text-base" id="descript" dangerouslySetInnerHTML={{__html:singleProduct?.description}}></div>
           <h5 className="font-semibold">
             Rating: <Rate className="text-sm" allowHalf defaultValue={3.5} />
           </h5>
@@ -104,7 +100,7 @@ const ProductDetails = () => {
               </span>
             </div>
           ) : (
-            <div className="font-semibold pb-3">
+            <div className="font-semibold mb-3">
               <span className="text-lg text-red-600">
                 Price: ৳{singleProduct?.price}
               </span>
@@ -141,7 +137,6 @@ const ProductDetails = () => {
           <h2>Reviews</h2>
         </div>
       </div>
-    </PublicLayout>
   );
 };
 

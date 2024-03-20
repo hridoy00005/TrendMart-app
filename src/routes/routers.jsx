@@ -1,5 +1,6 @@
 import {
   Address,
+  Cart,
   Categories,
   Fabourites,
   ForgetPassword,
@@ -18,6 +19,7 @@ export const publicRoutes = [
   { path: "/categories/:id", element: <Categories /> },
   { path: "/subcategory/:id", element: <Subcategories /> },
   { path: "/productdetails/:id", element: <ProductDetails /> },
+  { path: "/cart/", element: <Cart /> },
 ];
 
 export const authRoutes = [
