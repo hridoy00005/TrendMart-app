@@ -1,4 +1,4 @@
-import { Checkbox } from "antd";
+import { Checkbox, Tooltip } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { CartQuantity } from "../components/cart";
@@ -7,11 +7,14 @@ const Cart = () => {
   const { cart } = useSelector((state) => state?.cart || []);
 
   const [quantity, setQuantity] = useState();
+
+  // Order Cornmirmation
+  const handleConfirm = () => {};
   return (
     <div className="grid grid-cols-3">
-      <div className="col-span-2 mr-2">
+      <div className="col-span-3 sm:col-span-2 mr-2">
         <div className="border-b-2 border-black">
-          <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
+          <h1 className="text-3xl font-extrabold text-gray-800 mb-3">
             Your Cart
           </h1>
           <div className="mb-1">
@@ -56,16 +59,18 @@ const Cart = () => {
                   quantity={quantity}
                   setQuantity={setQuantity}
                 />
-                <span className="hover:text-rose-600 cursor-pointer transition duration-[0.4s] ml-1">
-                  <i className="fa-regular fa-trash-can mt-0"></i>
-                </span>
+                <Tooltip title='Delete' color="red" size='small'>
+                  <span className="hover:text-rose-600 cursor-pointer transition duration-[0.4s] ml-1">
+                    <i className="fa-regular fa-trash-can mt-0"></i>
+                  </span>
+                </Tooltip>
               </div>
             </div>
           ))}
         </div>
       </div>
       {/* Order Confirm Area */}
-      <div className="col-span-1 shadow-lg p-2 rounded-lg max-h-[300px]">
+      <div className="col-span-3 sm:col-span-1 shadow-lg p-2 rounded-lg max-h-[300px]">
         <div className="mb-2">
           <h3>Shipping Address</h3>
           <button className="text-sm border border-gray-300 hover:border-sky-500 hover:text-sky-700 w-full py-2 transition duration-[0.4s] rounded-lg">
@@ -76,7 +81,10 @@ const Cart = () => {
           <h3>Total</h3>
           <p>৳810</p>
         </div>
-        <button className="mt-5 text-sm font-semibold border bg-blue-950 text-white w-full py-3 hover:shadow-lg hover:scale-105 transition duration-[0.4s] rounded-lg">
+        <button
+          onClick={handleConfirm}
+          className="mt-5 text-sm font-semibold border-4  bg-blue-950 text-white hover:text-green-300 w-full py-3 hover:shadow-xl hover:shadow-green-200 hover:scale-[0.98] transition duration-[0.2s] hover:border-green-300 rounded-lg mb-0"
+        >
           Confirm Order
         </button>
       </div>
