@@ -1,12 +1,10 @@
 import { Checkbox, Tooltip } from "antd";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { CartQuantity } from "../components/cart";
+import { CartDelete, CartQuantity } from "../components/cart";
 
 const Cart = () => {
   const { cart } = useSelector((state) => state?.cart || []);
-
-  const [quantity, setQuantity] = useState();
 
   // Order Cornmirmation
   const handleConfirm = () => {};
@@ -56,14 +54,9 @@ const Cart = () => {
               <div className="col-span-1 flex items-center">
                 <CartQuantity
                   product={product}
-                  quantity={quantity}
-                  setQuantity={setQuantity}
+                  idx={idx}
                 />
-                <Tooltip title='Delete' color="red" size='small'>
-                  <span className="hover:text-rose-600 cursor-pointer transition duration-[0.4s] ml-1">
-                    <i className="fa-regular fa-trash-can mt-0"></i>
-                  </span>
-                </Tooltip>
+                <CartDelete idx={idx} />
               </div>
             </div>
           ))}
@@ -83,7 +76,7 @@ const Cart = () => {
         </div>
         <button
           onClick={handleConfirm}
-          className="mt-5 text-sm font-semibold border-4  bg-blue-950 text-white hover:text-green-300 w-full py-3 hover:shadow-xl hover:shadow-green-200 hover:scale-[0.98] transition duration-[0.2s] hover:border-green-300 rounded-lg mb-0"
+          className="mt-5 text-lg bg-blue-950 text-white hover:text-green-300 w-full py-3 hover:shadow-xl hover:shadow-green-200 hover:scale-[0.98] transition duration-[0.2s] hover:border-green-300 rounded-lg mb-0"
         >
           Confirm Order
         </button>

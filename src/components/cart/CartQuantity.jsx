@@ -1,25 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { quantityDecrease, quantityIncrease } from "../../store/reducers/cartReducer";
 
-const CartQuantity = ({ product, quantity, setQuantity }) => {
- 
+const CartQuantity = ({ product, quantity, setQuantity, idx }) => {
+ const dispatch = useDispatch()
   //Quantity Changing
   const handleQuantityChange = (e) => {
     setQuantity(e.target.value);
   };
   const handleIncrease = () => {
-    // setQuantity(quantity + 1);
+    dispatch(quantityIncrease({product, idx}));
   };
   const handleDecrease = () => {
-    // (quantity > 1) && setQuantity(quantity - 1);
+    product.quantity>1 && dispatch(quantityDecrease({product, idx}));
   };
 
-  const disabledMinus = quantity <= 1;
+  console.log("product is ");
+  console.log(product);
+  const disabledMinus = product.quantity <= 1;
   return (
     <div className="flex">
       <button
         className={`${
           disabledMinus
-            ? "text-xs py-1 text-gray-300 border rounded-lg px-3"
+            ? "text-xs py-1 text-gray-300 border rounded-lg px-3 cursor-not-allowed"
             : "text-xs py-1 hover:font-bold border rounded-lg px-3 hover:border-sky-500  duration-[0.4s]"
         }`}
         onClick={handleDecrease}
