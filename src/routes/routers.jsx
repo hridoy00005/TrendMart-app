@@ -2,7 +2,7 @@ import {
   Address,
   Cart,
   Categories,
-  Fabourites,
+  Favourites,
   ForgetPassword,
   Home,
   Login,
@@ -12,6 +12,7 @@ import {
   Ragistration,
   ResetPassword,
   Subcategories,
+  Checkout,
 } from "../pages";
 
 export const publicRoutes = [
@@ -31,7 +32,8 @@ export const authRoutes = [
 
 export const privateRoutes = [
   { path: "/profile", element: <Profile /> },
+  { path: "/checkout", element: <Checkout /> },
   { path: "/orders", element: <Orders /> },
-  { path: "/fabourites", element: <Fabourites /> },
+  { path: "/favourites", element: <Favourites /> },
   { path: "/address", element: <Address /> },
 ];

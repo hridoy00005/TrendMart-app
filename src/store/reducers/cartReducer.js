@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    cart:[]
+  cart: [],
 };
 
 const cartSlice = createSlice({
@@ -20,20 +20,30 @@ const cartSlice = createSlice({
       // }
       state.cart.push(action.payload);
     },
-    quantityIncrease:(state, action)=>{
-      const {product, idx} = action.payload;
-      state.cart[idx] = {...state.cart[idx], quantity:(product.quantity)+1};
+    cartQuantityIncrease: (state, action) => {
+      const { idx, quantity } = action.payload;
+      state.cart[idx] = { ...state.cart[idx], quantity: quantity + 1 };
     },
-    quantityDecrease:(state, action)=>{
-      const {product, idx} = action.payload;
-      state.cart[idx] = {...state.cart[idx], quantity:(product.quantity)-1};
+    cartQuantityDecrease: (state, action) => {
+      const { quantity, idx } = action.payload;
+      state.cart[idx] = {
+        ...state.cart[idx],
+        quantity: quantity > 1 ? quantity - 1 : quantity,
+      };
     },
-    deleteProduct:(state, action)=>{
-      const remainProducts = state.cart.filter((item, itemIdx) => itemIdx !== action.payload)
-      return {...state, cart:remainProducts}
-    }
+    singleCartItemDelete: (state, action) => {
+      const remainProducts = state.cart.filter(
+        (item, itemIdx) => itemIdx !== action.payload.idx
+      );
+      return { ...state, cart: remainProducts };
+    },
   },
 });
 
-export const { addCart, quantityIncrease, quantityDecrease, deleteProduct } = cartSlice.actions;
+export const {
+  addCart,
+  cartQuantityIncrease,
+  cartQuantityDecrease,
+  singleCartItemDelete,
+} = cartSlice.actions;
 export default cartSlice;
