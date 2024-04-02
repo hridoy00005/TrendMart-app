@@ -1,21 +1,65 @@
-import { useState } from "react";
-import { BillingAddress, OrderItems, ShippingAddress } from "../components/checkout";
+import { useEffect, useState } from "react";
+import {
+  BillingAddress,
+  OrderItems,
+  ShippingAddress,
+} from "../components/checkout";
 import PublicLayout from "../layouts/PublicLayout";
-import { Steps } from "antd";
+import { Steps, Spin } from "antd";
+import { address, api } from "../api";
 
 const Checkout = () => {
   const [current, setCurrent] = useState(0);
+  const [shippingAddress, setShippingAddress] = useState("");
+  const [billingAddress, setBillingAddress] = useState({});
+  const [allAddress, setAllAddresses] = useState([]);
+  const [loader, setLoader] = useState(false);
+  //Fetching Addresses
+  const fetchAddress = async () => {
+    setLoader(true);
+    try {
+      const res = await api.get(address.getAddress);
+      if (res.success) {
+        setAllAddresses(res.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setLoader(false);
+  };
 
+  useEffect(() => {
+    fetchAddress();
+  }, []);
+
+  const handleChooseShipping = (value) => {
+    setShippingAddress(value);
+  };
   const items = [
     {
       title: "Shipping Address",
       icon: <i className="fa-solid fa-truck-fast"></i>,
-      content: <ShippingAddress />,
+      content: (
+        <Spin spinning={loader}>
+          <ShippingAddress
+            handleSelectAddress={handleChooseShipping}
+            allAddress={allAddress}
+            shippingAddress={shippingAddress}
+          />
+        </Spin>
+      ),
     },
     {
       title: "Billing Address",
       icon: <i className="fa-solid fa-file-invoice"></i>,
-      content: <BillingAddress />,
+      content: (
+        <BillingAddress
+          setBillingAddress={setBillingAddress}
+          shippingAddress={shippingAddress}
+          billingAddress={billingAddress}
+          allAddress={allAddress}
+        />
+      ),
     },
     {
       title: "Payment",
@@ -30,22 +74,28 @@ const Checkout = () => {
         <div className="grid grid-cols-5 gap-5">
           <div className="col-span-3 bg-white border-2 border-gray-300 shadow-sm rounded-lg p-3">
             <Steps current={current} items={items} className="mb-3" />
-            <div className="bg-slate-200 rounded-md p-5">
-              {items[current].content}
-            </div>
+            <div className="rounded-md p-5">{items[current].content}</div>
             <div className="text-right mt-5">
-              {/* <EShopButton
-              v-if="current > 0"
-              btn-text="Previous"
-              onclick="handlePrev"
-              className="mr-5"
-            /> */}
-              {/* <EShopButton
-              v-if="current < 2"
-              btn-text="Next"
-              onclick="handleNext"
-              disabled="(current == 0 && shippingDisabled) || (current == 1 && billingDisabled)"
-            /> */}
+              {current > 0 && (
+                <button
+                  onClick={() => setCurrent((prev) => prev - 1)}
+                  className="mr-5"
+                >
+                  Previous
+                </button>
+              )}
+              {current < 2 && (
+                <button
+                  disabled={
+                    (current == 0 && !shippingAddress) ||
+                    (current == 1 && !billingAddress)
+                  }
+                  onClick={() => setCurrent((prev) => prev + 1)}
+                  className="mr-5 px-10 py-2 bg-black text-white"
+                >
+                  Next
+                </button>
+              )}
             </div>
           </div>
           <div className="col-span-2">

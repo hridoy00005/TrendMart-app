@@ -8,6 +8,7 @@ const CSelect = ({
     placeholder,
     options = [],
     onChange,
+    disabled=false,
     value,
     showSearch
   }) => {
@@ -17,6 +18,7 @@ const CSelect = ({
       <Select
         onChange={onChange}
         value={value}
+        disabled={disabled}
         className={className}
         size={size}
         showSearch={showSearch}

@@ -1,33 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Radio, Space } from "antd";
 
-export const ShippingAddress = () => {
+export const ShippingAddress = ({
+  handleSelectAddress,
+  allAddress = [],
+  shippingAddress,
+}) => {
   return (
     <React.Fragment>
-      <div
-        // v-if="!loading && allAddress?.result?.length === 0"
-        className="text-center"
-      >
-        <Link
-          to="/account"
-          className="py-2 px-2 bg-theme-color text-white rounded-lg"
-        >
-          + Add Address
+      <div className="text-center mb-5">
+        <Link to="/account" className="py-2 px-2 text-white rounded-lg">
+          <span className="bg-slate-400 rounded py-3 px-10">
+            {allAddress?.length !== 0 ? "Add New Address" : "+ Add Address"}
+          </span>
         </Link>
       </div>
-      <div className="grid md:grid-cols-2 gap-x-5">
-        {/* <a-radio-group v-model="selectAddress" @change="handleChooseAddress">
-            <a-radio v-for="address of allAddress.result" :value="address?._id" className="mb-5">
-                <div className="px-5">
-                    <p className="font-semibold text-lg">{{ address?.firstName + " " + address?.lastName }}</p>
-                    <p className="text-base">{{ address?.apertment }} , {{ address?.address }}</p>
-                    <p className="text-base">{{ address?.city }}, {{ address?.state }}-{{ address?.zipCode }} , {{
-                        address?.country }}</p>
-                    <p className="text-base"> <i className="fa-solid fa-phone text-sm mr-2"></i>{{ address?.phone }}</p>
-                </div>
-            </a-radio>
-        </a-radio-group> */}
-      </div>
+      <Radio.Group
+        onChange={(e) => handleSelectAddress(e.target.value)}
+        value={shippingAddress}
+      >
+        <Space direction="vertical" size="large">
+          {allAddress?.map((ad) => (
+            <Radio
+              value={ad?._id}
+              key={ad?._id}
+              className="w-full p-5 rounded-lg shadow-sm border hover:shadow-md"
+            >
+              <div className="px-5">
+                <p className="font-semibold text-lg">{ad?.name}</p>
+                <p className="text-base">{ad?.address}</p>
+                <p className="text-base">
+                  {ad?.upazila}, {ad?.district} , Bangladesh
+                </p>
+                <p className="text-base">
+                  {" "}
+                  <i className="fa-solid fa-phone text-sm mr-2"></i>
+                  {ad?.phone}
+                </p>
+              </div>
+            </Radio>
+          ))}
+        </Space>
+      </Radio.Group>
     </React.Fragment>
   );
 };

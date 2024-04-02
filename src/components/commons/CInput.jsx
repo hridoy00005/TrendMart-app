@@ -8,19 +8,33 @@ const CInput = ({
   placeholder,
   name,
   value,
+  disabled=false,
   onChange,
+  isTextArea = false,
 }) => {
   return (
     <div className="py-3">
       <h2 className="font-semibold">{label}</h2>
-      <Input
-        size="large"
-        type={type}
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
-      />
+      {isTextArea ? (
+        <Input.TextArea
+          placeholder={placeholder}
+          name={name}
+          disabled={disabled}
+          value={value}
+          rows={4}
+          onChange={onChange}
+        />
+      ) : (
+        <Input
+          size="large"
+          type={type}
+          placeholder={placeholder}
+          name={name}
+          disabled={disabled}
+          value={value}
+          onChange={onChange}
+        />
+      )}
     </div>
   );
 };

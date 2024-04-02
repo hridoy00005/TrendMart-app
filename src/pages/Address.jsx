@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AccountLayout from "../layouts/AccountLayout";
 import AddressForm from "../components/address/AddressForm";
 import { address, api } from "../api";
-import { notify } from "../utils/notification";
 import AddressCard from "../components/address/AddressCard";
 import { Spin } from "antd";
 
@@ -24,7 +23,6 @@ const Address = () => {
     }
     setLoader(false);
   };
-  console.log(addresses);
 
   useEffect(() => {
     fetchAddress();
