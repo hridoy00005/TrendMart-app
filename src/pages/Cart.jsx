@@ -20,7 +20,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center">You have no cart items</div>
+        <div className="flex justify-center min-h-[37vh]">You have no cart items</div>
       )}
     </div>
   );
