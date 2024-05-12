@@ -28,8 +28,6 @@ const ProductDetails = () => {
   // Adding to Cart
   const handleAddToCart = () => {
     const payload = { product: singleProduct, quantity, size };
-    console.log("Payload");
-    console.log(payload);
     dispatch(addCart(payload));
   };
 
@@ -51,7 +49,7 @@ const ProductDetails = () => {
   const handleFabourite = async () => {
     if (isAuthenticate) {
       try {
-        const res = await api.post(wish.createWish,{ productid:singleProduct?._id});
+        const res = await api.post(wish.createWish,{ productId:singleProduct?._id});
         notify(res);
       } catch (error) {
         console.log(error);
