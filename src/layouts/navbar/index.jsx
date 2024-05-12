@@ -28,7 +28,7 @@ const Navbar = () => {
         <Badge count={length} className="w-8 hover:bg-slate-300 duration-[0.4s] text-white hover:text-gray-800 rounded-lg cursor-pointer">
             <i className="fa-solid fa-cart-shopping text-2xl mt-[5px] ml-[2px]"></i>
         </Badge></Link>
-        <Link to="/fabourites">
+        <Link to="/favourites">
         <div className="w-8 hover:bg-slate-300 duration-[0.4s] hover:text-rose-700 rounded-lg cursor-pointer">
           <i className="fa-regular fa-heart text-3xl mt-[1px] ml-[1px]"></i>
         </div></Link>

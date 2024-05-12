@@ -12,7 +12,7 @@ const AccountLayout = ({children}) => {
             <Link to={"/orders"} className={location?.pathname==="/orders"?"account-option-active":"account-option"}>
               <h2>Orders</h2>
             </Link>
-            <Link to={"/fabourites"} className={location?.pathname==="/fabourites"?"account-option-active":"account-option"}>
+            <Link to={"/favourites"} className={location?.pathname==="/favourites"?"account-option-active":"account-option"}>
               <h2>Fabourites</h2>
             </Link>
             <Link to={"/address"} className={location?.pathname==="/address"?"account-option-active":"account-option"}>
