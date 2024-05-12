@@ -18,18 +18,13 @@ const ProductSizes = ({singleProduct, setSize }) => {
       <p>Size</p>
       <div className="pl-2 pb-1">
         <Radio.Group
-        defaultValue={singleProduct?.sizes[0]?.name}
+        defaultValue={singleProduct?.sizes[0]?.size?.name}
           onChange={(e) => {
             setSize(e.target.value);
           }}
         >
           <Space>
-            {singleProduct?.sizes.map((singleSize)=>(<Radio.Button key={singleSize._id} value={singleSize?.name} disabled={singleSize?.quantity<1}>{singleSize?.name}</Radio.Button>))}
-            {/* <Radio.Button value="S">S</Radio.Button>
-            <Radio.Button value="M">M</Radio.Button>
-            <Radio.Button value="L">L</Radio.Button>
-            <Radio.Button value="XL">XL</Radio.Button>
-            <Radio.Button value="XXL">XXL</Radio.Button> */}
+            {singleProduct?.sizes.map((singleSize)=>(<Radio.Button key={singleSize._id} value={singleSize?.size?.name} disabled={singleSize?.quantity<1}>{singleSize?.size?.name}</Radio.Button>))}
           </Space>
         </Radio.Group>
       </div>

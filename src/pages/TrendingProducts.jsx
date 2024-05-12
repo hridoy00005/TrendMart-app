@@ -31,9 +31,9 @@ const TrendingProducts = () => {
   return (
     <div className="mt-8 sm:mt-5">
       <center>
-        <h1 className="text-2xl">Trending Now</h1>
+        <h1 className="text-2xl mb-1">Trending Now</h1>
         <Spin spinning={loader} size="large">
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-5 bg-white rounded-lg p-2">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-5 bg-white rounded-lg p-2 min-h-[30vh]">
             {trendingProducts?.map((product) => (
               <Link
                 key={product._id}

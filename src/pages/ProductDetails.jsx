@@ -108,7 +108,7 @@ const ProductDetails = () => {
           )}
 
           {/* Sizes of the Product */}
-          {singleProduct?.sizeAvaible === true && (
+          {singleProduct?.sizeAvailable === true && (
             <ProductSizes
             singleProduct={singleProduct}
               size={size}
