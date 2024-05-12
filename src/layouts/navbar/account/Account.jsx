@@ -37,7 +37,7 @@ const Account = () => {
     },
   ];
   return (
-      <Dropdown menu={{ items: itemsAccount }} placement="bottomLeft" arrow className="my-auto">
+      <Dropdown menu={{ items: itemsAccount }} placement="bottomRight" arrow className="my-auto">
         <Button className="text-white font-semibold shadow-xl">{name}</Button>
       </Dropdown>
   );

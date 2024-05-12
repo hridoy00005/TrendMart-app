@@ -31,3 +31,8 @@ export const subcategory = {
 export const product = {
   getProduct:"/product/",
 }
+
+export const wish = {
+  getWish: "/wish",
+  createWish: "/wish/create"
+}
