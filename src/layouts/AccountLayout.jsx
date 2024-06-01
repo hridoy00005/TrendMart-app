@@ -8,7 +8,7 @@ const AccountLayout = ({children}) => {
     <PublicLayout>
       <div className=" min-h-screen">
           {/* Accounts Categories */}
-          <div className="flex flex-wrap justify-around items-end border py-3 bg-slate-300 border-blue-950 text-black text-base sm:text-lg font-semibold rounded-lg mb-3">
+          <div className="flex flex-wrap justify-around items-end border border-slate-300 py-3 bg-gray-100 text-black text-base sm:text-lg font-semibold rounded-lg mb-3">
             <Link to={"/orders"} className={location?.pathname==="/orders"?"account-option-active":"account-option"}>
               <h2>Orders</h2>
             </Link>
@@ -24,7 +24,7 @@ const AccountLayout = ({children}) => {
           </div>
 
           {/* Products section */}
-          <div className=" bg-white border border-black rounded-lg p-2">
+          <div className=" border border-slate-300 text-black rounded-lg p-2">
             {children}
           </div>
       </div>

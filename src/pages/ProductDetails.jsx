@@ -15,22 +15,46 @@ import { notify } from "../utils/notification";
 
 const ProductDetails = () => {
   const { isAuthenticate } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state?.cart || []);
+  console.log("cart");
+  console.log(cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const [singleProduct, setSingleProduct] = useState(); //Fatched Product
   const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState();
+  const [size, setSize] = useState({});
   const [loader, setLoader] = useState(false);
   const [currentImage, setCurrentImage] = useState(); // current image
   const [isLiked, setIsLiked] = useState(false);
 
   // Adding to Cart
   const handleAddToCart = () => {
-    const payload = { product: singleProduct, quantity, size };
-    console.log("Payload");
-    console.log(payload);
-    dispatch(addCart(payload));
+    let sizeExist = false;
+    cart.map((item) => {
+      if (item?.product._id === singleProduct?._id) {
+        if (item?.size) {
+          if (item.size === size) return (sizeExist = true);
+        } else sizeExist = true;
+      }
+    });
+
+    if (sizeExist) {
+      notify({
+        success: false,
+        msg: "This product exist in the cart!",
+      });
+    } else {
+      const payload = { product: singleProduct, quantity, size };
+      console.log("Payload");
+      console.log(payload);
+      dispatch(addCart(payload));
+      notify({
+        success: true,
+        msg: "Product added to the cart!",
+      });
+    }
   };
 
   //Fetch Product
@@ -51,8 +75,11 @@ const ProductDetails = () => {
   const handleFabourite = async () => {
     if (isAuthenticate) {
       try {
-        const res = await api.post(wish.createWish,{ productid:singleProduct?._id});
+        const res = await api.post(wish.createWish, {
+          productId: singleProduct?._id,
+        });
         notify(res);
+        setIsLiked(true);
       } catch (error) {
         console.log(error);
       }
@@ -60,19 +87,19 @@ const ProductDetails = () => {
       navigate("/login");
     }
   };
-  
+
   // Wish List Checking
   const fetchWishList = async () => {
     try {
       const res = await api.get(wish.getWish);
-      if(res.result[0].products.find((item)=>{item?._id===singleProduct?._id})){
+      if (res.result[0].products.find((item) => item?._id === id)) {
         setIsLiked(true);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   useEffect(() => {
     fetchProduct();
     fetchWishList();
@@ -141,7 +168,7 @@ const ProductDetails = () => {
         )}
 
         {/* Sizes of the Product */}
-        {singleProduct?.sizeAvailable === true && (
+        {singleProduct?.sizeAvailable && (
           <ProductSizes
             singleProduct={singleProduct}
             size={size}
@@ -161,12 +188,23 @@ const ProductDetails = () => {
           >
             Add to Cart
           </button>
-          {/* Add as Fabourite */}
+          {/* Add to Wishlist */}
           <button
-            className={`hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg rounded-lg p-2 ${isLiked ? "text-red-700" : "text-black"}`}
+            className={`hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg rounded-lg p-2 ${
+              isLiked ? "text-red-700" : "text-black"
+            }`}
             onClick={handleFabourite}
           >
-            <i className={`text-3xl mt-[1px] ml-[1px] ${isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}`}></i>
+            {/* {isLiked ? (
+              <i className="text-3xl mt-[1px] ml-[1px] fa-solid fa-heart"></i>
+            ) : (
+              <i className="text-3xl mt-[1px] ml-[1px] fa-regular fa-heart"></i>
+            )} */}
+            <i
+              className={`text-3xl mt-[1px] ml-[1px] ${
+                isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"
+              }`}
+            ></i>
           </button>
         </div>
       </div>

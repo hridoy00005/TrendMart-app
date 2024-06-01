@@ -6,6 +6,7 @@ import { SingleCartItem } from "./SingleCartItem";
 
 export const CartContainer = () => {
   const { cart } = useSelector((state) => state?.cart || []);
+  
   const getSubTotalPrice = useCallback(() => {
     let total = 0;
     cart?.forEach(({ product, quantity }) => {

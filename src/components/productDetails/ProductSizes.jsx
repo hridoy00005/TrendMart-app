@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, InputNumber, Modal, Radio, Rate, Space, Spin } from "antd";
 
-const ProductSizes = ({singleProduct, setSize }) => {
+const ProductSizes = ({singleProduct, setSize, size={} }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -13,6 +13,9 @@ const ProductSizes = ({singleProduct, setSize }) => {
 
   console.log("Product");
   console.log(singleProduct);
+  console.log("size");
+  console.log(size);
+  setSize(singleProduct?.sizes[0]?.size?.name);
   return (
     <div className="pb-5">
       <p>Size</p>
@@ -21,6 +24,7 @@ const ProductSizes = ({singleProduct, setSize }) => {
         defaultValue={singleProduct?.sizes[0]?.size?.name}
           onChange={(e) => {
             setSize(e.target.value);
+            console.log("size seted")
           }}
         >
           <Space>

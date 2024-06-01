@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { InputNumber, Pagination, Rate, Slider, Spin } from "antd";
 import { api } from "../api/apiConfigaration";
 import { category, product } from "../api/endpoints";
 
 const Categories = () => {
-  const { id } = useParams();
+  const { id } = useParams();//Get id from url
   const [minPrice, setMinprice] = useState(1);
   const [maxPrice, setMaxprice] = useState(1000);
   const [menuList, setMenuList] = useState([]);
@@ -28,9 +28,6 @@ const Categories = () => {
     }
     setLoader(false);
   };
-
-  // console.log(`menu list ${menuList}`);
-  console.log(menuList);
 
   useEffect(() => {
     fetchItems();
@@ -78,12 +75,12 @@ const Categories = () => {
           </div>
         </div>
         <div className="col-span-12 sm:col-span-10 ">
-          {/* Products Categories */}
-          <div className="flex flex-wrap justify-around items-end border py-3 bg-slate-300 border-blue-950 text-black text-base sm:text-lg font-semibold rounded-lg mb-3">
+          {/* Products Subcategories */}
+          <div className="flex flex-wrap justify-around items-end border py-3 bg-gray-100 border-slate-300 text-black text-base sm:text-lg font-semibold rounded-lg mb-3">
             {menuList?.subcategories?.map((subcategory) => (
               <Link
                 key={subcategory._id}
-                className="bg-slate-30 hover:bg-blue-900 text-center py-1 px-3 rounded-lg hover:text-white"
+                className=" hover:bg-gradient-to-b from-gray-300 text-center py-1 px-3 rounded-b-lg"
               >
                 <h2>{subcategory.title}</h2>
               </Link>
@@ -92,7 +89,7 @@ const Categories = () => {
 
           {/* Products section */}
           <Spin spinning={loader} size="large">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 bg-white border border-black rounded-lg p-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 bg-white border border-slate-300 rounded-lg p-2">
             {menuList?.products?.map((product) => (
               <Link key={product._id} to={`/productdetails/${product?._id}`} className="hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg hover:text-black">
                 {/* <img src="/img/default.jpg" alt="item" /> */}
@@ -103,7 +100,7 @@ const Categories = () => {
                 />
                 <div className="">
                   <h3 className="font-semibold">{product?.name}</h3>
-                  <h3 className="text-[13px]">{product?.description}</h3>
+                  <h3 className="text-[13px]" dangerouslySetInnerHTML={{ __html: product?.description }}></h3>
                   <div>
                     {!product?.discountAvailable ? ( //Here problem with discount true or false
                       <h3 className="text-red-600">

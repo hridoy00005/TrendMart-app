@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "antd";
 import { Link } from "react-router-dom";
-import { categories } from "./menu";
 import { api } from "../../api/apiConfigaration";
 import { category } from "../../api/endpoints";
 
@@ -12,7 +11,7 @@ const Categories = () => {
     const sub = subcategories.map(({ _id, iconClass, title }) => ({
       key: _id,
       label: (
-        <Link to={`/subcategory/${_id}`} className="p-2 text-base md:text-lg w-full">
+        <Link to={`/subcategory/${_id}`} className="p-2 font-semibold text-sm md:text-[0.8rem] w-full">
           {title}
         </Link>
       ),
@@ -49,7 +48,7 @@ const Categories = () => {
         >
           <Link
             to={`/categories/${menu?._id}`}
-            className="text-white sm:text-base md:text-lg font-semibold hover:underline"
+            className="font-semibold hover:underline"
           >
             <img src={menu.iconClass} alt="" /> {menu?.title}
           </Link>

@@ -10,39 +10,42 @@ const Navbar = () => {
   const { cart } = useSelector((state) => state?.cart || []);
   const length = cart.length;
   return (
-    <nav className="hidden sm:flex justify-between w-full h-full bg-sky-950 px-5 text-white mb-2">
-      <Link to="/" className="py-1 sm:py-2 md:py-4 w-8 md:w-11">
-        <img src={logo} alt="Logo" />
-      </Link>
-      <Categories />
-      <div className="my-auto border pb-[1px] p-[2px] shadow-lg rounded-lg w-56 md:w-80 lg:w-96">
-        <Input.Search placeholder="input search text" enterButton style={{}} />
-      </div>
-      <div className="flex gap-3 my-auto">
-        {/* <img
-          src={cart}
-          alt=""
-          className="w-8 text-white hover:bg-slate-300 rounded-lg cursor-pointer"
-        /> */}
-        <Link to="/cart">
-        <Badge count={length} className="w-8 hover:bg-slate-300 duration-[0.4s] text-white hover:text-gray-800 rounded-lg cursor-pointer">
-            <i className="fa-solid fa-cart-shopping text-2xl mt-[5px] ml-[2px]"></i>
-        </Badge></Link>
-        <Link to="/favourites">
-        <div className="w-8 hover:bg-slate-300 duration-[0.4s] hover:text-rose-700 rounded-lg cursor-pointer">
-          <i className="fa-regular fa-heart text-3xl mt-[1px] ml-[1px]"></i>
-        </div></Link>
-        {isAuthenticate ? (
-          <Account />
-        ) : (
-          <Link
-            to="/login"
-            className="my-auto cursor-pointer hover:bg-slate-300 duration-[0.4s] hover:text-black rounded-lg p-1"
-          >
-            <i className="fa-regular fa-user"></i>{" "}
-            <span className="ml-1">Login</span>
+    <nav className="hidden py-1 sm:flex sticky border-b sm:py-2 md:py-4 top-0 z-[999] bg-[#1e1e1e] sm:px-20 mb-3">
+      <div className="flex justify-between w-full h-full text-gray-300 text-[0.85rem]">
+        <Link to="/">
+          <img src={logo} alt="Logo" className="w-8" />
+        </Link>
+        <Categories />
+        <div className="flex items-center gap-3 my-auto">
+          <Link to="/cart">
+            <Badge
+              count={length}
+              color="white"
+              size="small"
+              style={{color:'#1e1e1e'}}
+            >
+              <span className=" text-gray-300 hover:text-white text-[1rem]">
+                <i className="fa-solid fa-cart-shopping"></i>
+              </span>
+            </Badge>
           </Link>
-        )}
+          {/* <Link to="/favourites">
+            <div className="duration-[0.4s] hover:text-rose-700 rounded-lg cursor-pointer">
+              <i className="fa-regular fa-heart"></i>
+            </div>
+          </Link> */}
+          {isAuthenticate ? (
+            <Account />
+          ) : (
+            <Link
+              to="/login"
+              className="my-auto cursor-pointer hover:bg-slate-300 duration-[0.4s] hover:text-black rounded-lg p-1"
+            >
+              <i className="fa-regular fa-user"></i>
+              <span className="ml-1">Login</span>
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );

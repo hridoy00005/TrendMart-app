@@ -1,0 +1,87 @@
+import React, { useEffect, useState } from "react";
+import Title from "../commons/Title";
+import { api, category } from "../../api";
+import { Rate, Spin } from "antd";
+import { Link } from "react-router-dom";
+
+export const HomeKidsCates = () => {
+  const id = "65c49715aec8c88e9ddaad05";
+  const [loader, setLoader] = useState(false);
+  const [menuList, setMenuList] = useState([]);
+
+  const fetchItems = async () => {
+    setLoader(true);
+    try {
+      const res = await api.get(category.getSingleCategory + id);
+      if (res.success) {
+        setMenuList(res.result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setLoader(false);
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+  return (
+    <div className="border mb-10 rounded-lg shadow">
+      <Title text="Kid's" image="https://i.pinimg.com/originals/19/7e/8f/197e8fae2c1dc45c3611080e71cc3408.gif" />
+      <Spin spinning={loader} size="large">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-5 p-2">
+          {menuList?.products?.map(
+            (product, idx) =>
+              idx < 10 && (
+                <Link
+                  key={product._id}
+                  to={`/productdetails/${product?._id}`}
+                  className="hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg hover:text-black"
+                >
+                  {/* <img src="/img/default.jpg" alt="item" /> */}
+                  <img
+                    src={product?.images[0]}
+                    alt=""
+                    className="h-[220px] w-full"
+                  />
+                  <div className="">
+                    <h3 className="font-semibold">{product?.name}</h3>
+                    <h3 className="text-[13px]" dangerouslySetInnerHTML={{ __html: product?.description }}></h3>
+                    <div>
+                      {!product?.discountAvailable ? ( //Here problem with discount true or false
+                        <h3 className="text-red-600">
+                          Price: ৳{product?.discountPrice}{" "}
+                          <del
+                            className="text-[13px
+                        ]"
+                          >
+                            ৳{product?.price}
+                          </del>
+                        </h3>
+                      ) : (
+                        <h3 className="text-red-600">
+                          Price: {product?.price}
+                        </h3>
+                      )}
+                    </div>
+                    <h3>
+                      Rating:{" "}
+                      <Rate className="text-sm" allowHalf defaultValue={3.5} />
+                    </h3>
+                  </div>
+                </Link>
+              )
+          )}
+          <div className="col-span-2 sm:col-span-5 text-right">
+            <Link
+              to={`/categories/${id}`}
+              className=" hover:underline hover:text-sky-600 hover:cursor-pointer font-semibold text-[404040]"
+            >
+              {"See More >>"}
+            </Link>
+          </div>
+        </div>
+      </Spin>
+    </div>
+  );
+};

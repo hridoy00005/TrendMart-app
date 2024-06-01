@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +7,7 @@
 
 /* #Fonts */
 body{
-    font-family: 'Kalnia', serif;
+    font-family: "Poppins", sans-serif;
     letter-spacing: 0.5px;
 }
 h1,h2,h3,h4{
@@ -17,10 +18,10 @@ h1,h2,h3,h4{
 
 /* Account Options Styles */
 .account-option {
-    @apply bg-slate-300 hover:bg-blue-900 text-center py-1 px-3 rounded-lg hover:text-white;
+    @apply hover:bg-gradient-to-b from-gray-300 text-center py-1 px-3 rounded-b-lg;
   }
   .account-option-active {
-    @apply bg-blue-900 text-center py-1 px-3 rounded-lg text-white;
+    @apply bg-gradient-to-b from-gray-300 text-center py-1 px-3 rounded-b-lg ;
   }
 
   @layer components {
@@ -50,4 +51,20 @@ input[type=number] {
 
 .quantiy-input-input .ant-input{
   text-align: center !important;
+}
+
+
+/* CSS for react-slick slider */
+.slick-slide > div{
+  margin: 0 10px;
+}
+.slick-slider > button::before{
+  font-size: 25px;
+  background-color: gray;
+  border-radius: 50%;
+  padding: 3.64px 1.5px 0px 2px;
+  z-index: 99999999999;
+}
+.slick-slider > button:hover::before{
+  background: #404040;
 }

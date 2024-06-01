@@ -45,7 +45,7 @@ const BasicInfo = () => {
     try {
       const result = await api.fileUpload(e.target.files[0]);
       if (result?.success) {
-        setUpdate({ ...update, avatar: result.url });
+        setUpdate({ ...update, avatar: result.result.url });
       } 
     } catch (error) {
       console.log(error);
@@ -53,12 +53,15 @@ const BasicInfo = () => {
     setFileLoading(false);
   };
 
+  // console.log(user?.avatar);
+  // console.log(update);
+
   const disabled =
     !update.name ||
     !update.phone ||
     (update.name == user?.name &&
       update.phone == user?.phone &&
-      update.avatar == user.avatar);
+      update.avatar == user?.avatar);
 
   return (
     <div className=" bg-gray-200 p-5 rounded mb-5 shadow-lg">

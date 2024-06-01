@@ -10,7 +10,7 @@ export const ShippingAddress = ({
   return (
     <React.Fragment>
       <div className="text-center mb-5">
-        <Link to="/account" className="py-2 px-2 text-white rounded-lg">
+        <Link to="/address" className="py-2 px-2 text-white rounded-lg">
           <span className="bg-slate-400 rounded py-3 px-10">
             {allAddress?.length !== 0 ? "Add New Address" : "+ Add Address"}
           </span>

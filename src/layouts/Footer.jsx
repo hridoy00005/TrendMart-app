@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     // <footer className='w-full bottom-0 h-[80px] bg-slate-500'>Footer</footer>
-    <footer className="bg-sky-900 mt-8 text-white">
-      <div className="grid grid-cols-12 px-5">
-        <div className="col-span-12 md:col-span-3 p-5 text-center md:text-left">
+    <footer className="bg-[#1e1e1e] mt-8 text-gray-300">
+      <div className="grid grid-cols-12 sm:px-20">
+        <div className="col-span-12 md:col-span-3 py-5 text-center md:text-left">
           <h1 className="text-lg md:text-lg lg:text-xl font-semibold mb-1 sm:mb-2">
             About Us
           </h1>
@@ -38,7 +38,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-12 md:col-span-3 p-5 text-center md:text-right">
+        <div className="col-span-12 md:col-span-3 py-5 text-center md:text-right">
           <h1 className="text-lg md:text-lg lg:text-xl font-semibold mb-1 sm:mb-2">
             Follow Us
           </h1>
@@ -56,7 +56,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <center className="py-2 m-0 w-full border-t border-white">
+      <center className="py-2 m-0 w-full border-t border-white text-sm text-gray-300">
         {" "}
         Copyright @ {new Date().getFullYear()}
       </center>

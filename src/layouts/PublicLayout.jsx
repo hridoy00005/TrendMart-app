@@ -3,20 +3,18 @@ import Navbar from "./navbar";
 import Footer from "./Footer";
 import NavbarMobile from "./NavbarMobile";
 
-
 const PublicLayout = ({ children }) => {
   return (
-    <div className="bg-gray-200 min-h-screen relative">
-      <div className="text-right text-sm text-slate-500 pr-8 pt-1">Hotline:111000</div>
+    <div>
+      <div className="text-right text-sm bg-gray-100 text-slate-500 pr-8 pt-1 rounded-b-md">
+        Hotline:111000
+      </div>
       <Navbar />
-
-      <div className=" sm:px-5 mx-auto">{children}</div>
-
-      {/* This is footer section */}
-      <Footer />
-
-      {/* Footer Bar */}
-      <NavbarMobile />
+      <div className="bg-white min-h-screen relative sm:px-20">
+        <div className=" mx-auto">{children}</div>
+      </div>
+        <Footer />
+        <NavbarMobile />
     </div>
   );
 };

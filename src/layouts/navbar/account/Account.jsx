@@ -1,12 +1,12 @@
 import React from "react";
-import { Button, Dropdown } from "antd";
+import { Dropdown } from "antd";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutreducer } from "../../../store/reducers/authReducer";
 
 const Account = () => {
   const dispatch = useDispatch();
-  const {name} = useSelector((state)=>state.auth.user)
+  const { user } = useSelector((state) => state.auth);
 
   const handlLogout = () => {
     dispatch(logoutreducer());
@@ -16,7 +16,7 @@ const Account = () => {
     {
       key: "1",
       label: (
-        <Link to="/orders">
+        <Link to="/orders" className="text-[0.8rem]">
           <span className="mr-1">
             <i className="fa-solid fa-user"></i>
           </span>{" "}
@@ -27,7 +27,7 @@ const Account = () => {
     {
       key: "2",
       label: (
-        <div onClick={handlLogout}>
+        <div onClick={handlLogout} className="text-[0.8rem]">
           <span className="mr-1">
             <i className="fa-solid fa-right-from-bracket"></i>
           </span>{" "}
@@ -38,7 +38,9 @@ const Account = () => {
   ];
   return (
       <Dropdown menu={{ items: itemsAccount }} placement="bottomRight" arrow className="my-auto">
-        <Button className="text-white font-semibold shadow-xl">{name}</Button>
+        <div className="">
+          <img className="w-[30px] h-[30px] rounded-full" src={user?.avatar}/>
+        </div>
       </Dropdown>
   );
 };
