@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BillingAddress,
   OrderItems,
+  PaymentForm,
   ShippingAddress,
 } from "../components/checkout";
 import PublicLayout from "../layouts/PublicLayout";
 import { Steps, Spin } from "antd";
 import { address, api } from "../api";
+import { CardElement, Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+// const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISH_KEY);
+const stripePromise = loadStripe(
+  "pk_test_51NiaBnG5LWC441mfYbPbZQmJUds51mpddRlrnqTLhjAhwIEL25lwyJc60DiJh9klxiiVerGjOvMFkazhPO1myfc200RMyIdDbf"
+);
 
 const Checkout = () => {
   const [current, setCurrent] = useState(0);
@@ -34,6 +42,13 @@ const Checkout = () => {
 
   const handleChooseShipping = (value) => {
     setShippingAddress(value);
+  };
+
+  const createOnOrder = () => {
+    try {
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   const items = [
     {
@@ -64,6 +79,11 @@ const Checkout = () => {
     {
       title: "Payment",
       icon: <i className="fa-solid fa-credit-card"></i>,
+      content: (
+        <Elements stripe={stripePromise}>
+          <PaymentForm />
+        </Elements>
+      ),
     },
   ];
 
