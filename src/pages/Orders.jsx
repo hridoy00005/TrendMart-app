@@ -6,14 +6,14 @@ import { Pagination, Rate } from "antd";
 const Orders = () => {
   return (
     <AccountLayout>
-      <div className="gap-5 bg-white border rounded-lg p-2">
+      <div className="gap-5 bg-white rounded-lg p-2">
             <div className="mx-auto my-3">
-              <Link to="/productdetails" className="flex">
+              <Link to="/productdetails" className="flex border rounded-lg hover:shadow h-[100px]">
                 {/* <img src="/img/default.jpg" alt="item" /> */}
                 <img
                   src="/img/t-shirt2.jpg"
                   alt=""
-                  className="aspect-[9/10] min-w-[180px] max-w-[220px] h-[220px] hover:border hover:border-black"
+                  className="aspect-[9/10] hover:border hover:border-black"
                 />
                 <div className="ml-2">
                   <p className="text-[13px] max-w-[220px] font-semibold">
@@ -29,11 +29,11 @@ const Orders = () => {
             </div>
 
             <div className="mx-auto col-span-6 mb-3">
-              <Link to="/productdetails" className="flex">
+              <Link to="/productdetails" className="flex border rounded-lg hover:shadow h-[100px]">
                 <img
                   src="/img/t-shirt3.jpg"
                   alt="item"
-                  className="aspect-[9/10] min-w-[180px] max-w-[220px] h-[220px] hover:border hover:border-black"
+                  className="aspect-[9/10] hover:border hover:border-black"
                 />
                 <div className="ml-2">
                   <p className="text-[13px] max-w-[220px] font-semibold">
@@ -49,11 +49,11 @@ const Orders = () => {
             </div>
 
             <div className="mx-auto col-span-6">
-              <Link to="/productdetails" className="flex">
+              <Link to="/productdetails" className="flex border rounded-lg hover:shadow h-[100px]">
                 <img
                   src="/img/t-shirt4.jpg"
                   alt="item"
-                  className="aspect-[9/10] min-w-[180px] max-w-[220px] h-[220px] hover:border hover:border-black"
+                  className="aspect-[9/10] hover:border hover:border-black"
                 />
                 <div className="ml-2">
                   <p className="text-[13px] max-w-[220px] font-semibold">

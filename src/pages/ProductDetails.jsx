@@ -31,10 +31,21 @@ const ProductDetails = () => {
 
   // Adding to Cart
   const handleAddToCart = () => {
-    const payload = { product: singleProduct, quantity, size };
-    console.log("Payload");
-    console.log(payload);
-    dispatch(addCart(payload));
+    let existToCart = false;
+    cart.map((item) => {
+      if (item?.product?._id === singleProduct?._id) {
+        // if(ProductDetails?.sizeAvailable && item?.size){}
+        if (size === item?.size) existToCart = true;
+        // else{existToCart=true}
+      }
+    });
+    if (!existToCart) {
+      const payload = { product: singleProduct, quantity, size };
+      console.log("Payload");
+      console.log(payload);
+      dispatch(addCart(payload));
+      notify({ success: true, msg: "The product is added in the cart" });
+    } else notify({ success: false, msg: "This product exists in the cart!" });
   };
 
   //Fetch Product
@@ -55,7 +66,9 @@ const ProductDetails = () => {
   const handleFabourite = async () => {
     if (isAuthenticate) {
       try {
-        const res = await api.post(wish.createWish,{ productid:singleProduct?._id});
+        const res = await api.post(wish.createWish, {
+          productId: singleProduct?._id,
+        });
         notify(res);
         setIsLiked(true);
       } catch (error) {

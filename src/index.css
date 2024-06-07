@@ -18,10 +18,10 @@ h1,h2,h3,h4{
 
 /* Account Options Styles */
 .account-option {
-    @apply hover:bg-gradient-to-b from-gray-300 text-center py-1 px-3 rounded-b-lg;
+    @apply  text-center py-1 px-3 rounded-b-lg hover:text-black border-t-2 border-gray-100 hover:border-gray-400 hover:bg-gradient-to-b from-gray-300 transform duration-[0.4s] ;
   }
   .account-option-active {
-    @apply bg-gradient-to-b from-gray-300 text-center py-1 px-3 rounded-b-lg ;
+    @apply bg-gradient-to-b from-gray-300 text-center py-1 px-3 rounded-b-lg hover:text-black border-t-2 border-gray-400;
   }
 
   @layer components {

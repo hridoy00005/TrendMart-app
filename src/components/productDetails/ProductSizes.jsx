@@ -11,10 +11,6 @@ const ProductSizes = ({singleProduct, setSize, size={} }) => {
     setIsModalOpen(false);
   };
 
-  console.log("Product");
-  console.log(singleProduct);
-  console.log("size");
-  console.log(size);
   setSize(singleProduct?.sizes[0]?.size?.name);
   return (
     <div className="pb-5">

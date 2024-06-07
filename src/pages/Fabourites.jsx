@@ -28,7 +28,7 @@ const Fabourites = () => {
       <Spin spinning={loader}>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 bg-white p-2 min-h-screen">
           {wisiList?.map((item, idx) => (
-            <div className="mx-auto hover:shadow-lg hover:border hover:border-gray-300" key={idx}>
+            <div className="mx-auto hover:shadow-lg border border-white hover:border hover:border-gray-300" key={idx}>
               <Link
                 to={`/productdetails/${item?._id}`}
                 className="hover:text-black"

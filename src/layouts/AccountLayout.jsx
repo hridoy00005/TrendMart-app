@@ -24,7 +24,7 @@ const AccountLayout = ({children}) => {
           </div>
 
           {/* Products section */}
-          <div className=" border border-slate-300 text-black rounded-lg p-2">
+          <div className=" border border-gray-200 shadow text-black rounded-lg p-2">
             {children}
           </div>
       </div>

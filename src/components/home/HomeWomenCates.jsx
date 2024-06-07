@@ -30,53 +30,52 @@ export const HomeWomenCates = () => {
       <Title text="Women's" image="https://cdn.dribbble.com/users/2212220/screenshots/5808617/girl-walking_dribble.gif" />
       <Spin spinning={loader} size="large">
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-5 p-2">
-          {menuList?.products?.map(
-            (product, idx) =>
-              idx < 10 && (
-                <Link
-                  key={product._id}
-                  to={`/productdetails/${product?._id}`}
-                  className="hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg hover:text-black"
-                >
-                  {/* <img src="/img/default.jpg" alt="item" /> */}
+          {menuList?.products?.map((product,idx) => idx<10 && (
+            <Link
+              key={product._id}
+              to={`/productdetails/${product?._id}`}
+              className="hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg hover:text-black px-3"
+            >
+              {/* <img src="/img/default.jpg" alt="item" /> */}
+              <div className="relative">
+                  {product?.discountAvailable && (
+                    <p className="absolute z-40 right-[5px] bg-gray-900 bg-opacity-30 rounded-lg mt-1 px-[2px] text-sm font-semibold text-yellow-300">
+                      -
+                      {Math.ceil(
+                        product?.discountPrice / (product?.price / 100)
+                      )}
+                      %
+                    </p>
+                  )}
                   <img
                     src={product?.images[0]}
                     alt=""
-                    className="h-[220px] w-full"
+                    className=" hover:scale-105 transition duration-[0.4s] aspect-[9/10] min-h-[100px] w-full"
                   />
-                  <div className="">
-                    <h3 className="font-semibold">{product?.name}</h3>
-                    <h3 className="text-[13px]" dangerouslySetInnerHTML={{ __html: product?.description }}></h3>
-                    <div>
-                      {!product?.discountAvailable ? ( //Here problem with discount true or false
-                        <h3 className="text-red-600">
-                          Price: ৳{product?.discountPrice}{" "}
-                          <del
-                            className="text-[13px
-                        ]"
-                          >
-                            ৳{product?.price}
-                          </del>
-                        </h3>
-                      ) : (
-                        <h3 className="text-red-600">
-                          Price: {product?.price}
-                        </h3>
-                      )}
-                    </div>
-                    <h3>
-                      Rating:{" "}
-                      <Rate className="text-sm" allowHalf defaultValue={3.5} />
+                </div>
+              <div className="">
+                <h3 className="font-semibold">{product?.name}</h3>
+                <h3 className="text-[13px]" dangerouslySetInnerHTML={{ __html: product?.description }}></h3>
+                <div>
+                  {product?.discountAvailable ? ( 
+                    <h3 className="text-red-600">
+                      Price: ৳{product?.discountPrice}{" "}
+                      <del
+                        className="text-xs text-gray-500"
+                      >
+                        ৳{product?.price}
+                      </del>
                     </h3>
-                  </div>
-                </Link>
-              )
-          )}
+                  ) : (
+                    <h3 className="text-red-600">Price: ৳{product?.price}</h3>
+                  )}
+                </div>
+                  <Rate className="text-xs" allowHalf defaultValue={Math.random() * 5 + 1} />
+              </div>
+            </Link>
+          ))}
           <div className="col-span-2 sm:col-span-5 text-right">
-            <Link
-              to={`/categories/${id}`}
-              className=" hover:underline hover:text-sky-600 hover:cursor-pointer font-semibold text-[404040]"
-            >
+            <Link to={`/categories/${id}`} className=" hover:underline hover:text-sky-600 hover:cursor-pointer font-semibold text-[404040]">
               {"See More >>"}
             </Link>
           </div>
