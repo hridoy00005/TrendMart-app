@@ -16,15 +16,15 @@ import { notify } from "../utils/notification";
 const ProductDetails = () => {
   const { isAuthenticate } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state?.cart || []);
-  console.log("cart");
-  console.log(cart);
+  // console.log("cart");
+  // console.log(cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const [singleProduct, setSingleProduct] = useState(); //Fatched Product
   const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState({});
+  const [selectedSize, setSelectedSize] = useState(JSON.stringify({}));
   const [loader, setLoader] = useState(false);
   const [currentImage, setCurrentImage] = useState(); // current image
   const [isLiked, setIsLiked] = useState(false);
@@ -32,17 +32,22 @@ const ProductDetails = () => {
   // Adding to Cart
   const handleAddToCart = () => {
     let existToCart = false;
-    cart.map((item) => {
-      if (item?.product?._id === singleProduct?._id) {
-        // if(ProductDetails?.sizeAvailable && item?.size){}
-        if (size === item?.size) existToCart = true;
-        // else{existToCart=true}
+    const selSize = JSON.parse(selectedSize);
+    cart.map(({ product, size }) => {
+      if (product?._id === singleProduct?._id) {
+        if (singleProduct?.sizeAvailable && product?.sizeAvailable) {
+          if (selSize.size?._id === size?.size?._id) existToCart = true;
+        } else {
+          existToCart = true;
+        }
       }
     });
     if (!existToCart) {
-      const payload = { product: singleProduct, quantity, size };
-      console.log("Payload");
-      console.log(payload);
+      const payload = {
+        product: singleProduct,
+        quantity,
+        size: selSize,
+      };
       dispatch(addCart(payload));
       notify({ success: true, msg: "The product is added in the cart" });
     } else notify({ success: false, msg: "This product exists in the cart!" });
@@ -54,6 +59,7 @@ const ProductDetails = () => {
       setLoader(true);
       const res = await api.get(product.getProduct + id);
       setSingleProduct(res.result);
+      setSelectedSize(res.result?.sizes[0]);
       setCurrentImage(res.result.images[0]);
     } catch (error) {
       console.log(error);
@@ -95,8 +101,6 @@ const ProductDetails = () => {
     fetchProduct();
     fetchWishList();
   }, []);
-
-  console.log(singleProduct);
   return (
     <div className="grid grid-cols-12 bg-white p-2">
       {/*Product Images */}
@@ -162,8 +166,8 @@ const ProductDetails = () => {
         {singleProduct?.sizeAvailable && (
           <ProductSizes
             singleProduct={singleProduct}
-            size={size}
-            setSize={setSize}
+            selectedSize={selectedSize}
+            setSelectedSize={setSelectedSize}
           />
         )}
 

@@ -9,8 +9,6 @@ import { useDispatch } from 'react-redux';
 // eslint-disable-next-line react/prop-types
 export const SingleCartItem = ({ cart = {}, idx }) => {
   const { product, quantity, size } = cart;
-console.log("size");
-console.log(size);
   const dispatch = useDispatch();
   return (
     <React.Fragment>
@@ -21,7 +19,7 @@ console.log(size);
         <div className="ml-4">
           <div className="font-bold text-sm mb-5">{product?.name}</div>
           {product?.sizeAvailable && (
-            <div className="text-red-500 text-xs">Size: {size}</div>
+            <div className="text-red-500 text-xs">Size: {(size)?.size?.name}</div>
           )}
           {/* <a href="#" className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a> */}
         </div>

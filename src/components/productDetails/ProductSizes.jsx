@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, InputNumber, Modal, Radio, Rate, Space, Spin } from "antd";
+import { Button, Modal, Radio, Space } from "antd";
 
-const ProductSizes = ({singleProduct, setSize, size={} }) => {
+const ProductSizes = ({ singleProduct, setSelectedSize, selectedSize = {} }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -10,21 +10,26 @@ const ProductSizes = ({singleProduct, setSize, size={} }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  setSize(singleProduct?.sizes[0]?.size?.name);
   return (
     <div className="pb-5">
       <p>Size</p>
       <div className="pl-2 pb-1">
         <Radio.Group
-        defaultValue={singleProduct?.sizes[0]?.size?.name}
+          defaultValue={JSON.stringify(selectedSize)}
           onChange={(e) => {
-            setSize(e.target.value);
-            console.log("size seted")
+            setSelectedSize(e.target.value);
           }}
         >
           <Space>
-            {singleProduct?.sizes.map((singleSize)=>(<Radio.Button key={singleSize._id} value={singleSize?.size?.name} disabled={singleSize?.quantity<1}>{singleSize?.size?.name}</Radio.Button>))}
+            {singleProduct?.sizes.map((singleSize) => (
+              <Radio.Button
+                key={singleSize._id}
+                value={JSON.stringify(singleSize)}
+                disabled={singleSize?.quantity < 1}
+              >
+                {singleSize?.size?.name}
+              </Radio.Button>
+            ))}
           </Space>
         </Radio.Group>
       </div>
