@@ -64,8 +64,6 @@ const TrendingProducts = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  console.log(trendingProducts);
   return (
     <div className="mb-10">
       <Title
@@ -73,10 +71,10 @@ const TrendingProducts = () => {
         image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAQiQn9M1YMUXwtazWYFTYd9cBO4BQatkSYpRfLCLQhw&s"
       />
       <Spin spinning={loader} size="large">
-        <div className="">
+        <div className="p-[10px] rounded-md border-[lightgray]">
           <Slider
             {...settings}
-            className=" pl-2 grid grid-cols-2 sm:grid-cols-5"
+            className="pl-2 grid grid-cols-2 sm:grid-cols-5 p-[10px] rounded-md border-[lightgray]"
           >
             {trendingProducts?.map((product) => (
               <Link
