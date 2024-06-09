@@ -42,7 +42,7 @@ export const HomeMenCates = () => {
                     <p className="absolute z-40 right-[5px] bg-gray-900 bg-opacity-30 rounded-lg mt-1 px-[2px] text-sm font-semibold text-yellow-300">
                       -
                       {Math.ceil(
-                        product?.discountPrice / (product?.price / 100)
+                        100-(product?.discountPrice / (product?.price / 100))
                       )}
                       %
                     </p>
