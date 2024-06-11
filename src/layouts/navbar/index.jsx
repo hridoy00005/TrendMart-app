@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Categories from "./Categories";
 import { Badge, Input } from "antd";
 import { Account } from "./account";
 import logo from "../../assets/images/logo.png";
 import { useSelector } from "react-redux";
+import NavMenu from "./NavMenu";
 const Navbar = () => {
   const { isAuthenticate } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state?.cart || []);
@@ -15,7 +15,7 @@ const Navbar = () => {
         <Link to="/">
           <img src={logo} alt="Logo" className="w-8" />
         </Link>
-        <Categories />
+        <NavMenu />
         <div className="flex items-center gap-3 my-auto">
           <Link to="/cart">
             <Badge

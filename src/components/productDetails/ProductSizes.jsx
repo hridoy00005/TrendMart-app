@@ -41,7 +41,7 @@ const ProductSizes = ({
       </div>
       <div className="">
         <h5>
-          <span className="underline text-sky-600 text-[13px] cursor-pointer" onClick={showModal}>Size Guide</span>
+          <span className="underline text-sky-600 text-xs cursor-pointer" onClick={showModal}>Size Guide</span>
         </h5>
         <Modal
           title="Size Guide"

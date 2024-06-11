@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { api } from "../../api/apiConfigaration";
 import { category } from "../../api/endpoints";
 
-const Categories = () => {
+const NavMenu = () => {
   const [menus, setMenus] = useState([]);
   const [loder, setLoader] = useState(false);
   const getSubcategory = (subcategories = []) => {
@@ -58,4 +58,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default NavMenu;

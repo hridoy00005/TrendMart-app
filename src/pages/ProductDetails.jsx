@@ -124,7 +124,7 @@ const ProductDetails = () => {
 
       {/* Product Informations */}
       <div className="col-span-12 sm:col-span-6 text-sm">
-        <h2 className="text-xl font-extrabold pb-3">{singleProduct?.name}</h2>
+        <h2 className="text-xl font-bold pb-3">{singleProduct?.name}</h2>
 
         <h5 className="font-semibold">
           Rating : <Rate className="text-sm" allowHalf defaultValue={3.5} />
@@ -194,7 +194,7 @@ const ProductDetails = () => {
 
         {/* Product Descrition */}
         <div className="mt-3">
-          <h5 className="font-semibold">Description : </h5>
+          <h5 className="font-semibold mb-1">Description : </h5>
           <p
             className="text-sm"
             id="descript"

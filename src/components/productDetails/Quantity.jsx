@@ -19,7 +19,7 @@ const Quantity = ({
 
   return (
     <div className="flex mb-3">
-      <h2 className="mr-2 my-auto">Quantity: </h2>
+      <h2 className="mr-2 my-auto font-semibold">Quantity: </h2>
       <button
         className={`${
           disabledMinus
