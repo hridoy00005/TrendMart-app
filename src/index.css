@@ -10,10 +10,7 @@ body{
     font-family: "Poppins", sans-serif;
     letter-spacing: 0.5px;
 }
-h1,h2,h3,h4{
-    font-family: 'Playfair Display', serif;
-    letter-spacing: 0.5px;
-}
+
 
 
 /* Account Options Styles */
@@ -58,13 +55,7 @@ input[type=number] {
 .slick-slide > div{
   margin: 0 10px;
 }
-.slick-slider > button::before{
-  font-size: 25px;
-  background-color: gray;
-  border-radius: 50%;
-  padding: 3.64px 1.5px 0px 2px;
-  z-index: 99999999999;
-}
-.slick-slider > button:hover::before{
-  background: #404040;
+
+.slick-slider > .slick-arrow::after{
+  display: none;
 }

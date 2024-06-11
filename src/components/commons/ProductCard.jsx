@@ -2,8 +2,8 @@ import { Rate } from "antd";
 
 export const ProductCard = ({ data = {} }) => {
   return (
-    <div className="p-4 relative border z-40 border-[lightgray] rounded-md hover:scale-[103%] transition duration-[0.4s] cursor-pointer hover:shadow-lg hover:text-black">
-      <div className="relative">
+    <div className="p-4 border border-[lightgray] rounded-lg hover:scale-[103%] transition duration-[0.4s] cursor-pointer hover:shadow-lg hover:text-black">
+      <div className="relative mb-3">
         {data?.discountAvailable && (
           <p className="absolute z-40 right-[5px] bg-gray-900 bg-opacity-30 rounded-lg mt-1 px-[2px] text-sm font-semibold text-yellow-300">
             -{Math.ceil(100 - data?.discountPrice / (data?.price / 100))}%
@@ -17,7 +17,7 @@ export const ProductCard = ({ data = {} }) => {
       </div>
 
       <div className="">
-        <h3 className="font-semibold w-[210px] overflow-hidden text-ellipsis whitespace-nowrap">{data?.name}</h3>
+        <h3 className="text-sm font-semibold w-[95%] overflow-hidden text-ellipsis whitespace-nowrap">{data?.name}</h3>
         {/* <h3
           className="text-[12px]"
           dangerouslySetInnerHTML={{ __html: data?.description }}

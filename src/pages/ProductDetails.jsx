@@ -59,7 +59,7 @@ const ProductDetails = () => {
       setLoader(true);
       const res = await api.get(product.getProduct + id);
       setSingleProduct(res.result);
-      setSelectedSize(res.result?.sizes[0]);
+      setSelectedSize(JSON.stringify(res.result?.sizes[0]));
       setCurrentImage(res.result.images[0]);
     } catch (error) {
       console.log(error);
@@ -100,7 +100,7 @@ const ProductDetails = () => {
   useEffect(() => {
     fetchProduct();
     fetchWishList();
-  }, []);
+  }, [isLiked]);
   return (
     <div className="grid grid-cols-12 bg-white p-2">
       {/*Product Images */}
@@ -125,16 +125,12 @@ const ProductDetails = () => {
       {/* Product Informations */}
       <div className="col-span-12 sm:col-span-6 text-sm">
         <h2 className="text-xl font-extrabold pb-3">{singleProduct?.name}</h2>
-        <div
-          className="text-base"
-          id="descript"
-          dangerouslySetInnerHTML={{ __html: singleProduct?.description }}
-        ></div>
+
         <h5 className="font-semibold">
-          Rating: <Rate className="text-sm" allowHalf defaultValue={3.5} />
+          Rating : <Rate className="text-sm" allowHalf defaultValue={3.5} />
         </h5>
         <h5 className="pb-3">
-          <span className="font-semibold">Type:</span>{" "}
+          <span className="font-semibold">Type : </span>{" "}
           {singleProduct?.subcategory?.title}
         </h5>
 
@@ -147,10 +143,9 @@ const ProductDetails = () => {
             <del className="text-xs text-gray-500">৳{singleProduct?.price}</del>
             <span className="bg-red-600 rounded-lg px-2 text-xs text-white mx-2">
               -
-              {(
-                100 -
-                (singleProduct?.discountPrice / singleProduct?.price) * 100
-              ).toFixed(2)}
+              {Math.ceil(
+                100 - singleProduct?.discountPrice / (singleProduct?.price / 100)
+              )}
               %
             </span>
           </div>
@@ -190,17 +185,21 @@ const ProductDetails = () => {
             }`}
             onClick={handleFabourite}
           >
-            {/* {isLiked ? (
-              <i className="text-3xl mt-[1px] ml-[1px] fa-solid fa-heart"></i>
-            ) : (
-              <i className="text-3xl mt-[1px] ml-[1px] fa-regular fa-heart"></i>
-            )} */}
-            <i
-              className={`text-3xl mt-[1px] ml-[1px] ${
-                isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"
-              }`}
-            ></i>
+            {isLiked &&
+              <span><i className="text-3xl mt-[1px] ml-[1px] fa-solid fa-heart"></i></span>
+           }
+           {!isLiked && <span><i className="text-3xl mt-[1px] ml-[1px] fa-regular fa-heart"></i></span>}
           </button>
+        </div>
+
+        {/* Product Descrition */}
+        <div className="mt-3">
+          <h5 className="font-semibold">Description : </h5>
+          <p
+            className="text-sm"
+            id="descript"
+            dangerouslySetInnerHTML={{ __html: singleProduct?.description }}
+          ></p>
         </div>
       </div>
       <div className="col-span-12 h-[1px] bg-gray-800 w-full mb-2"></div>
