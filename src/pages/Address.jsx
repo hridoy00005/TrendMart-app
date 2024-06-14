@@ -29,17 +29,20 @@ const Address = () => {
   }, []);
 
   return (
-    <Spin spinning={loader} size="large">
-      <AccountLayout>
+    <AccountLayout>
+      <Spin spinning={loader}>
         <AddressForm fetchAddress={fetchAddress} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center mt-3">
-          {addresses.map((address)=>(
-            <AddressCard key={address._id} adata={address} fetchAddress={fetchAddress} />
+          {addresses.map((address) => (
+            <AddressCard
+              key={address._id}
+              adata={address}
+              fetchAddress={fetchAddress}
+            />
           ))}
         </div>
-      </AccountLayout>
-    </Spin>
-    
+      </Spin>
+    </AccountLayout>
   );
 };
 
