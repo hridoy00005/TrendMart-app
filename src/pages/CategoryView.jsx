@@ -12,10 +12,12 @@ const CategoryView = () => {
   const [categoryDetails, setCategoryDetails] = useState([]);
   const [loader, setLoader] = useState(false);
 
-  const fetchItems = async () => {
+  const fetchCategoryDetails = async (filters = {}) => {
     setLoader(true);
     try {
-      const res = await api.get(category.getSingleCategory + id);
+      const res = await api.get(category.getSingleCategory + id, {
+        ...filters,
+      });
       if (res.success) {
         setCategoryDetails(res.result);
       }
@@ -26,11 +28,14 @@ const CategoryView = () => {
   };
 
   useEffect(() => {
-    fetchItems();
+    fetchCategoryDetails();
   }, [id]);
   return (
     <div className=" min-h-screen grid grid-cols-12 mt-5">
-      <Filters subcategories={categoryDetails?.subcategories} />
+      <Filters
+        subcategories={categoryDetails?.subcategories}
+        refetch={fetchCategoryDetails}
+      />
       <div className="col-span-12 sm:col-span-10 ml-5">
         {/* Products section */}
         <Spin spinning={loader} size="large">
