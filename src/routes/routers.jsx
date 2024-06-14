@@ -1,7 +1,7 @@
 import {
   Address,
   Cart,
-  Categories,
+  CategoryView,
   Favourites,
   ForgetPassword,
   Home,
@@ -17,7 +17,7 @@ import {
 
 export const publicRoutes = [
   { path: "/", element: <Home /> },
-  { path: "/categories/:id", element: <Categories /> },
+  { path: "/categories/:id", element: <CategoryView /> },
   { path: "/subcategory/:id", element: <Subcategories /> },
   { path: "/productdetails/:id", element: <ProductDetails /> },
   { path: "/cart/", element: <Cart /> },
