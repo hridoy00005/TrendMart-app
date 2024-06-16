@@ -1,32 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kalnia:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 /* #Fonts */
-body{
-    font-family: "Poppins", sans-serif;
-    letter-spacing: 0.5px;
+body {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.5px;
 }
-
-
 
 /* Account Options Styles */
 .account-option {
-    @apply  text-center py-1 px-3 rounded-b-lg hover:text-black border-t-2 border-gray-100 hover:border-gray-400 hover:bg-gradient-to-b from-gray-300 transform duration-[0.4s] ;
-  }
-  .account-option-active {
-    @apply bg-gradient-to-b from-gray-300 text-center py-1 px-3 rounded-b-lg hover:text-black border-t-2 border-gray-400;
-  }
+  @apply border border-[#3d3d3d] text-[14px] font-normal px-4 py-2 rounded-full hover:bg-[#3d3d3d] hover:text-white duration-300;
+}
+.account-option-active {
+  @apply border border-[#3d3d3d] bg-[#3d3d3d] text-white text-[14px] font-normal px-4 py-2 rounded-full;
+}
 
-  @layer components {
-    .btn-class {
-      @apply bg-blue-800 px-4 py-2 text-white font-bold rounded-lg disabled:bg-slate-400 hover:bg-blue-700 disabled:cursor-not-allowed;
-    }
+@layer components {
+  .btn-class {
+    @apply bg-blue-800 px-4 py-2 text-white font-bold rounded-lg disabled:bg-slate-400 hover:bg-blue-700 disabled:cursor-not-allowed;
   }
-  
+}
+
 /* Input arrow removed */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -35,27 +32,25 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.ant-dropdown-menu-item-active:hover{
-  background-color: rgb(203 213 225)!important;
+.ant-dropdown-menu-item-active:hover {
+  background-color: rgb(203 213 225) !important;
   /* color: white!important; */
   /* transition-duration: 300ms; */
 }
 
-
-.quantiy-input-input .ant-input{
+.quantiy-input-input .ant-input {
   text-align: center !important;
 }
 
-
 /* CSS for react-slick slider */
-.slick-slide > div{
+.slick-slide > div {
   margin: 0 10px;
 }
 
-.slick-slider > .slick-arrow::after{
+.slick-slider > .slick-arrow::after {
   display: none;
 }

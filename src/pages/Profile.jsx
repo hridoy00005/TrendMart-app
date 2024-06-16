@@ -1,5 +1,5 @@
 import React from "react";
-import { BasicInfo, EmailUpdate, PasswordUpdate } from "../components/profile";
+import { BasicInfo } from "../components/profile";
 import AccountLayout from "../layouts/AccountLayout";
 const Profile = () => {
   return (

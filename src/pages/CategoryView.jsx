@@ -47,12 +47,13 @@ const CategoryView = () => {
             ))}
 
             {/* Pagination */}
-            {categoryDetails?.products?.length > 0 && (
+            {categoryDetails?.total > 0 && (
               <div className="col-span-2 sm:col-span-4 mt-2 text-center">
                 <Pagination
                   defaultCurrent={1}
-                  total={100}
+                  total={categoryDetails?.total}
                   showSizeChanger={false}
+                  hideOnSinglePage
                 />
               </div>
             )}

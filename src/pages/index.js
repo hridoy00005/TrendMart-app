@@ -6,7 +6,7 @@ export {default as NotFound} from "./NotFound";
 export {default as CategoryView } from "./CategoryView";
 export {default as ProductDetails} from "./ProductDetails";
 export {default as Orders} from "./Orders";
-export {default as Favourites} from "./Fabourites";
+export {default as Favourites} from "./Favourites";
 export {default as Address} from "./Address";
 export {default as ForgetPassword} from "./ForgetPassword";
 export {default as ResetPassword} from "./ResetPassword";
