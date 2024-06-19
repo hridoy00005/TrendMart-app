@@ -6,26 +6,21 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 
-export const PaymentForm = () => {
+export const PaymentForm = ({createOnOrder}) => {
   const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const cardElement = elements.getElement(CardNumberElement);
+    const { token, error } = await stripe.createToken(cardElement);
     if (!stripe || !elements) {
       return;
     }
-
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardNumberElement),
-    });
-
     if (error) {
       console.error(error);
     } else {
-      console.log("Payment method created:", paymentMethod);
+      createOnOrder(token.id);
       // Make API call to your server to handle payment method
     }
   };

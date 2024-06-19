@@ -10,6 +10,7 @@ import { Steps, Spin } from "antd";
 import { address, api } from "../api";
 import { CardElement, Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSelector } from "react-redux";
 
 // const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISH_KEY);
 const stripePromise = loadStripe(
@@ -22,6 +23,7 @@ const Checkout = () => {
   const [billingAddress, setBillingAddress] = useState({});
   const [allAddress, setAllAddresses] = useState([]);
   const [loader, setLoader] = useState(false);
+  const { cart } = useSelector((state) => state?.cart || []);
   //Fetching Addresses
   const fetchAddress = async () => {
     setLoader(true);
@@ -44,7 +46,18 @@ const Checkout = () => {
     setShippingAddress(value);
   };
 
-  const createOnOrder = () => {
+  const createOnOrder = async(token) => {
+    const items = cart?.map(ct=>({...ct?.product, ...ct}));
+    const orderData = {
+      shippingAddress,
+      billingAddress,
+      token,
+      items
+    }
+    const res = await api.post('/order/create', {...orderData});
+    if(res.success){
+       // redirect order confirmation page
+    }
     try {
     } catch (error) {
       console.log(error.message);
@@ -81,7 +94,7 @@ const Checkout = () => {
       icon: <i className="fa-solid fa-credit-card"></i>,
       content: (
         <Elements stripe={stripePromise}>
-          <PaymentForm />
+          <PaymentForm createOnOrder={createOnOrder} />
         </Elements>
       ),
     },
@@ -119,7 +132,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="col-span-2">
-            <OrderItems />
+            <OrderItems cart={cart} />
           </div>
         </div>
       </div>

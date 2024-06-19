@@ -1,84 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AccountLayout from "../layouts/AccountLayout";
 import { Link } from "react-router-dom";
 import { Pagination, Rate } from "antd";
+import { api } from "../api/apiConfigaration";
+import { ProductCard } from "../components/commons";
 
 const Orders = () => {
+  const [allOrders, setAllOrders] = useState([]);
+  const fetchAllOrders = async () => {
+    try {
+      const res = await api.get("/order");
+      console.log(res);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllOrders();
+  }, []);
   return (
     <AccountLayout>
       <div className="gap-5 bg-white rounded-lg p-2">
-            <div className="mx-auto my-3">
-              <Link to="/productdetails" className="flex border rounded-lg hover:shadow h-[100px]">
-                {/* <img src="/img/default.jpg" alt="item" /> */}
-                <img
-                  src="/img/t-shirt2.jpg"
-                  alt=""
-                  className="aspect-[9/10] hover:border hover:border-black"
-                />
-                <div className="ml-2">
-                  <p className="text-[13px] max-w-[220px] font-semibold">
-                    Mens t-shirt black tri-blend crew 3 sizes available
-                  </p>
-                  <div className="text-sm">
-                    Rating:{" "}
-                    <Rate className="text-sm" allowHalf defaultValue={3.5} />
-                  </div>
-                  <p className="text-red-600">Price: $12</p>
-                </div>
-              </Link>
-            </div>
-
-            <div className="mx-auto col-span-6 mb-3">
-              <Link to="/productdetails" className="flex border rounded-lg hover:shadow h-[100px]">
-                <img
-                  src="/img/t-shirt3.jpg"
-                  alt="item"
-                  className="aspect-[9/10] hover:border hover:border-black"
-                />
-                <div className="ml-2">
-                  <p className="text-[13px] max-w-[220px] font-semibold">
-                    Mens t-shirt black tri-blend crew 3 sizes available
-                  </p>
-                  <div className="text-sm">
-                    Rating:{" "}
-                    <Rate className="text-sm" allowHalf defaultValue={4.0} />
-                  </div>
-                  <p className="text-red-600">Price: $40</p>
-                </div>
-              </Link>
-            </div>
-
-            <div className="mx-auto col-span-6">
-              <Link to="/productdetails" className="flex border rounded-lg hover:shadow h-[100px]">
-                <img
-                  src="/img/t-shirt4.jpg"
-                  alt="item"
-                  className="aspect-[9/10] hover:border hover:border-black"
-                />
-                <div className="ml-2">
-                  <p className="text-[13px] max-w-[220px] font-semibold">
-                    Mens t-shirt black tri-blend crew 3 sizes available
-                  </p>
-                  <div className="text-sm">
-                    Rating:{" "}
-                    <Rate className="text-sm" allowHalf defaultValue={3.5} />
-                  </div>
-                  <p className="text-red-600">Price: $50</p>
-                </div>
-              </Link>
-            </div>
-
-            {/* Pagination */}
-            <div className="col-span-12  mt-2 text-center">
-              <Pagination
-                defaultCurrent={1}
-                total={100}
-                showSizeChanger={false}
-              />
-            </div>
+        <div className="mx-auto my-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-5">
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
+            <Link to="/productdetails">
+              <ProductCard data={{}} />
+            </Link>
           </div>
-    </AccountLayout>
-  )
-}
+        </div>
 
-export default Orders
+        {/* Pagination */}
+        <div className="col-span-12  mt-2 text-center">
+          <Pagination defaultCurrent={1} total={100} showSizeChanger={false} />
+        </div>
+      </div>
+    </AccountLayout>
+  );
+};
+
+export default Orders;

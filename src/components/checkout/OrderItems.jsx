@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-export const OrderItems = () => {
-  const { cart } = useSelector((state) => state?.cart || []);
+export const OrderItems = ({cart}) => {
   const [totalPrice, setTotalPrice] = useState();
   let price = 0;
   useEffect(()=>{
@@ -22,7 +21,7 @@ export const OrderItems = () => {
           <div className="flex justify-between">
             <div>
               <p className="text-gray-600 font-bold">{product?.name}</p>
-              {product?.product?.sizeAvailable && <p>Size: {size?.name}</p>}
+              {product?.sizeAvailable && <p>Size: {size?.size?.name}</p>}
               <p>
                 Price: USD{" "}
                 {product?.discountAvailable

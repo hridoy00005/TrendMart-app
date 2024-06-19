@@ -10,20 +10,19 @@ export const ProductCard = ({ data = {} }) => {
           </p>
         )}
         <img
-          src={data?.images[0]}
+          // src={data?.images?.[0]}
+          src="/img/t-shirt2.jpg"
           alt=""
           className="aspect-[9/10] min-h-[100px] w-full"
         />
       </div>
 
       <div className="">
-        <h3 className="text-sm font-semibold w-[95%] overflow-hidden text-ellipsis whitespace-nowrap">{data?.name}</h3>
-        {/* <h3
-          className="text-[12px]"
-          dangerouslySetInnerHTML={{ __html: data?.description }}
-        ></h3> */}
+        <h3 className="text-sm font-semibold w-[95%] overflow-hidden text-ellipsis whitespace-nowrap">
+          {data?.name}
+        </h3>
         <div>
-          {data?.discountAvailable ? ( //Here is a problem with discount true or false
+          {data?.discountAvailable ? (
             <h3 className="text-red-600 text-sm">
               Price: ৳{data?.discountPrice}{" "}
               <del className="text-xs text-gray-500">৳{data?.price}</del>
