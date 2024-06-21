@@ -13,6 +13,7 @@ import {
   ResetPassword,
   Subcategories,
   Checkout,
+  OrderConfirmation,
 } from "../pages";
 
 export const publicRoutes = [
@@ -33,6 +34,7 @@ export const authRoutes = [
 export const privateRoutes = [
   { path: "/profile", element: <Profile /> },
   { path: "/checkout", element: <Checkout /> },
+  { path: "/order-confirmation/:id", element: <OrderConfirmation /> },
   { path: "/orders", element: <Orders /> },
   { path: "/favourites", element: <Favourites /> },
   { path: "/address", element: <Address /> },

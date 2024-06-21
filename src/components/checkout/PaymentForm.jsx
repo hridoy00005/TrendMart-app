@@ -6,7 +6,7 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 
-export const PaymentForm = ({createOnOrder}) => {
+export const PaymentForm = ({ createOnOrder }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -27,66 +27,81 @@ export const PaymentForm = ({createOnOrder}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Card Number
-        <CardNumberElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+      <div className="mb-4">
+        <div className="text-gray-600 mb-2">Card Number</div>
+        <div className="border rounded-md px-5 py-3">
+          <CardNumberElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#424770",
+                  "::placeholder": {
+                    color: "#aab7c4",
+                  },
+                },
+                invalid: {
+                  color: "#9e2146",
                 },
               },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-      </label>
-      <label>
-        Expiration Date
-        <CardExpiryElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+            }}
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-5 mb-5">
+        <div className="mb-4">
+          <div className="text-gray-600 mb-2">Expiration Date</div>
+          <div className="border rounded-md px-5 py-3">
+            <CardExpiryElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
+                  },
                 },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-      </label>
-      <label>
-        CVC
-        <CardCvcElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+              }}
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <div className="text-gray-600 mb-2">CVC</div>
+          <div className="border rounded-md px-5 py-3">
+            <CardCvcElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
+                  },
                 },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-      </label>
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
+              }}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="text-center">
+        <button
+          type="submit"
+          className="bg-[#1e1e1e] text-white px-32 py-2 rounded-full"
+          disabled={!stripe}
+        >
+          Pay
+        </button>
+      </div>
     </form>
   );
 };

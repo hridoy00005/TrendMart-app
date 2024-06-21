@@ -8,7 +8,7 @@ import {
 import PublicLayout from "../layouts/PublicLayout";
 import { Steps, Spin } from "antd";
 import { address, api } from "../api";
-import { CardElement, Elements } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSelector } from "react-redux";
 
@@ -18,7 +18,7 @@ const stripePromise = loadStripe(
 );
 
 const Checkout = () => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(2);
   const [shippingAddress, setShippingAddress] = useState("");
   const [billingAddress, setBillingAddress] = useState({});
   const [allAddress, setAllAddresses] = useState([]);

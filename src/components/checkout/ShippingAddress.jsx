@@ -11,7 +11,7 @@ export const ShippingAddress = ({
     <React.Fragment>
       <div className="text-center mb-5">
         <Link to="/address" className="py-2 px-2 text-white rounded-lg">
-          <span className="bg-slate-400 rounded py-3 px-10">
+          <span className="bg-[#1e1e1e] rounded py-3 px-10">
             {allAddress?.length !== 0 ? "Add New Address" : "+ Add Address"}
           </span>
         </Link>

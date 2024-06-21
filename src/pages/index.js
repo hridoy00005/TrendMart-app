@@ -14,3 +14,4 @@ export {default as Subcategories} from "./Subcategories";
 export {default as TrendingProducts} from "./TrendingProducts";
 export {default as Cart} from "./Cart";
 export {default as Checkout} from "./Checkout";
+export * from "./OrderConfirmation";
