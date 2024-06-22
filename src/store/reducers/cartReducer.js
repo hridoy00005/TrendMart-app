@@ -9,15 +9,6 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addCart: (state, action) => {
-      // const {product, quantity } = action.payload;
-      // const products = state.cart;
-      // console.log(state);
-      // for (let item in products) {
-      //   if((item.product._id===product._id) && (item.quantity===quantity)){
-      //     console.log("returned")
-      //     return state;
-      //   }
-      // }
       state.cart.push(action.payload);
     },
     cartQuantityIncrease: (state, action) => {
@@ -37,6 +28,10 @@ const cartSlice = createSlice({
       );
       return { ...state, cart: remainProducts };
     },
+
+    clearCart: (state) => {
+      return { ...state, cart: [] };
+    },
   },
 });
 
@@ -45,5 +40,6 @@ export const {
   cartQuantityIncrease,
   cartQuantityDecrease,
   singleCartItemDelete,
+  clearCart
 } = cartSlice.actions;
 export default cartSlice;

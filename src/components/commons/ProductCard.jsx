@@ -10,8 +10,7 @@ export const ProductCard = ({ data = {} }) => {
           </p>
         )}
         <img
-          // src={data?.images?.[0]}
-          src="/img/t-shirt2.jpg"
+          src={data?.images?.[0]}
           alt=""
           className="aspect-[9/10] min-h-[100px] w-full"
         />

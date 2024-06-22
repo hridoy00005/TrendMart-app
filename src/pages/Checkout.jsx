@@ -10,7 +10,9 @@ import { Steps, Spin } from "antd";
 import { address, api } from "../api";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../store/reducers/cartReducer";
 
 // const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISH_KEY);
 const stripePromise = loadStripe(
@@ -18,12 +20,15 @@ const stripePromise = loadStripe(
 );
 
 const Checkout = () => {
-  const [current, setCurrent] = useState(2);
+  const [current, setCurrent] = useState(0);
   const [shippingAddress, setShippingAddress] = useState("");
   const [billingAddress, setBillingAddress] = useState({});
   const [allAddress, setAllAddresses] = useState([]);
   const [loader, setLoader] = useState(false);
   const { cart } = useSelector((state) => state?.cart || []);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   //Fetching Addresses
   const fetchAddress = async () => {
     setLoader(true);
@@ -46,17 +51,21 @@ const Checkout = () => {
     setShippingAddress(value);
   };
 
-  const createOnOrder = async(token) => {
-    const items = cart?.map(ct=>({...ct?.product, ...ct}));
+  const createOnOrder = async (token) => {
+    const items = cart?.map((ct) => ({ ...ct?.product, ...ct }));
+    const selectedShippingAddress = allAddress.find(
+      (ad) => ad?._id == shippingAddress
+    );
     const orderData = {
-      shippingAddress,
+      shippingAddress: selectedShippingAddress,
       billingAddress,
       token,
-      items
-    }
-    const res = await api.post('/order/create', {...orderData});
-    if(res.success){
-       // redirect order confirmation page
+      items,
+    };
+    const res = await api.post("/order/create", { ...orderData });
+    if (res.success) {
+      dispatch(clearCart());
+      navigate(`/order-confirmation/${res?.order?._id}`);
     }
     try {
     } catch (error) {

@@ -1,8 +1,25 @@
 import { Result } from "antd";
 import PublicLayout from "../layouts/PublicLayout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { api } from "../api";
+import { useEffect, useState } from "react";
 
 export const OrderConfirmation = () => {
+const { id } = useParams();
+const [orders, setOrders] = useState({});
+const fetchSingleOrder = async()=>{
+  try {
+    const res = await api.get(`/order/${id}`);
+    setOrders(res?.result);
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+useEffect(()=>{
+  fetchSingleOrder();
+},[])
+
   return (
     <PublicLayout>
       <div className="mb-14">
@@ -15,14 +32,15 @@ export const OrderConfirmation = () => {
         </div>
       </div>
       <div className="text-center">
+        <h6 className="mb-2 font-semibold">Order ID: {orders?.orderId}</h6>
         <p className="text-xl mb-4">Order to delivery:</p>
         <div>
           <p className="mb-2">
-            <b>John Kingdom</b>
+            <b>{orders?.shippingAddress?.name}</b>
           </p>
-          <p>Habun Bepari, Aqua.</p>
-          <p>Mymensingh 2200, Bangladesh</p>
-          <p>01718781953</p>
+          <p>{orders?.shippingAddress?.address}, {orders?.shippingAddress?.upazila}.</p>
+          <p>{orders?.shippingAddress?.district}, Bangladesh.</p>
+          <p>{orders?.shippingAddress?.phone}</p>
         </div>
       </div>
     </PublicLayout>
