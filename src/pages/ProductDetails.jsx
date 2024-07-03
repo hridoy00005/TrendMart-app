@@ -32,7 +32,7 @@ const ProductDetails = () => {
   // Adding to Cart
   const handleAddToCart = () => {
     let existToCart = false;
-    const selSize = JSON.parse(selectedSize);
+    const selSize = selectedSize ? JSON.parse(selectedSize): {};
     cart.map(({ product, size }) => {
       if (product?._id === singleProduct?._id) {
         if (singleProduct?.sizeAvailable && product?.sizeAvailable) {
