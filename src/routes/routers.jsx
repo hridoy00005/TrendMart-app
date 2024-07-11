@@ -14,6 +14,7 @@ import {
   Subcategories,
   Checkout,
   OrderConfirmation,
+  OrderDetails,
 } from "../pages";
 
 export const publicRoutes = [
@@ -36,6 +37,7 @@ export const privateRoutes = [
   { path: "/checkout", element: <Checkout /> },
   { path: "/order-confirmation/:id", element: <OrderConfirmation /> },
   { path: "/orders", element: <Orders /> },
+  { path: "/orders/:orderId", element: <OrderDetails /> },
   { path: "/favourites", element: <Favourites /> },
   { path: "/address", element: <Address /> },
 ];
