@@ -30,11 +30,11 @@ export const SingleOrder = ({ data }) => {
 const getStatusColor = (status) => {
   switch (status) {
     case "Pending":
-      return "warning";
+      return "#f50";
     case "Accepted":
-      return "success";
+      return "#87d068";
     case "Shipped":
-      return "primary";
+      return "#108ee9";
     default:
       break;
   }

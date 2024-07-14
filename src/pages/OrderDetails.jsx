@@ -4,6 +4,7 @@ import { api } from "../api";
 import { useEffect, useState } from "react";
 import { Table } from "antd";
 import dayjs from "dayjs";
+import { OrderAddress } from "../components/orderDetails";
 
 export const OrderDetails = () => {
   const { orderId } = useParams();
@@ -74,27 +75,8 @@ export const OrderDetails = () => {
               </span>
             </div>
           </div>
-          <div className="border rounded-lg shadow p-3">
-            <h2 className="text-xl font-semibold">Billing Address</h2>
-            <div>{orderData?.billingAddress?.name}</div>
-            <div>{orderData?.billingAddress?.address}</div>
-            <div>
-              {orderData?.billingAddress?.upazila}, {orderData?.billingAddress?.district}
-            </div>
-            {orderData?.billingAddress?.phone && <div>phone: {orderData?.billingAddress?.phone}</div>}
-            <div>email: {orderData?.billingAddress?.email}</div>
-          </div>
-          <div className="border rounded-lg shadow p-3">
-            <h2 className="text-xl font-semibold">Shipping Address</h2>
-            <div>{orderData?.shippingAddress?.name}</div>
-            <div>{orderData?.shippingAddress?.address}</div>
-            <div>
-              {orderData?.shippingAddress?.upazila}, {orderData?.shippingAddress?.district}
-            </div>
-            {orderData?.shippingAddress?.phone && (
-              <div>phone: {orderData?.shippingAddress?.phone}</div>
-            )}
-          </div>
+          <OrderAddress addressData={orderData?.billingAddress} title="Billing Address" />
+          <OrderAddress addressData={orderData?.shippingAddress} title="Shipping Address" />
         </div>
         <div className="mb-8 md:mb-5">
           <h2 className="text-xl font-semibold mb-3">Items</h2>
@@ -102,6 +84,7 @@ export const OrderDetails = () => {
             loading={loader}
             dataSource={orderData?.items}
             columns={columns}
+            rowKey={(row)=>row?._id}
           />
         </div>
         <div className="flex justify-end mb-8 md:mb-5">

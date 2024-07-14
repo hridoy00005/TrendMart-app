@@ -32,11 +32,11 @@ const ProductDetails = () => {
   // Adding to Cart
   const handleAddToCart = () => {
     let existToCart = false;
-    const selSize = selectedSize ? JSON.parse(selectedSize): {};
+    const selSize = singleProduct?.sizes?.find(({_id})=>_id ===selectedSize);
     cart.map(({ product, size }) => {
       if (product?._id === singleProduct?._id) {
         if (singleProduct?.sizeAvailable && product?.sizeAvailable) {
-          if (selSize.size?._id === size?.size?._id) existToCart = true;
+          if (selSize?._id === size?._id) existToCart = true;
         } else {
           existToCart = true;
         }
@@ -59,7 +59,7 @@ const ProductDetails = () => {
       setLoader(true);
       const res = await api.get(product.getProduct + id);
       setSingleProduct(res.result);
-      setSelectedSize(JSON.stringify(res.result?.sizes[0]));
+      setSelectedSize(res.result?.sizes[0]?._id);
       setCurrentImage(res.result.images[0]);
     } catch (error) {
       console.log(error);
@@ -69,7 +69,7 @@ const ProductDetails = () => {
   };
 
   // Add to Wish list
-  const handleFabourite = async () => {
+  const handleFavourite = async () => {
     if (isAuthenticate) {
       try {
         const res = await api.post(wish.createWish, {
@@ -183,7 +183,7 @@ const ProductDetails = () => {
             className={`hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg rounded-lg p-2 ${
               isLiked ? "text-red-700" : "text-black"
             }`}
-            onClick={handleFabourite}
+            onClick={handleFavourite}
           >
             {isLiked &&
               <span><i className="text-3xl mt-[1px] ml-[1px] fa-solid fa-heart"></i></span>

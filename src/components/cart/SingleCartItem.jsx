@@ -19,7 +19,7 @@ export const SingleCartItem = ({ cart = {}, idx }) => {
         <div className="ml-4">
           <div className="font-bold text-sm mb-5">{product?.name}</div>
           {product?.sizeAvailable && (
-            <div className="text-red-500 text-xs">Size: {(size)?.size?.name}</div>
+            <div className="text-red-500 text-xs">Size: {(size)?.sizeName?.toUpperCase()}</div>
           )}
           {/* <a href="#" className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a> */}
         </div>

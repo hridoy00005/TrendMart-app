@@ -35,7 +35,7 @@ export const authRoutes = [
 export const privateRoutes = [
   { path: "/profile", element: <Profile /> },
   { path: "/checkout", element: <Checkout /> },
-  { path: "/order-confirmation/:id", element: <OrderConfirmation /> },
+  { path: "/order-confirmation/:orderId", element: <OrderConfirmation /> },
   { path: "/orders", element: <Orders /> },
   { path: "/orders/:orderId", element: <OrderDetails /> },
   { path: "/favourites", element: <Favourites /> },

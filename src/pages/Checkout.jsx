@@ -65,7 +65,7 @@ const Checkout = () => {
     const res = await api.post("/order/create", { ...orderData });
     if (res.success) {
       dispatch(clearCart());
-      navigate(`/order-confirmation/${res?.order?._id}`);
+      navigate(`/order-confirmation/${res?.order?.orderId}`);
     }
     try {
     } catch (error) {

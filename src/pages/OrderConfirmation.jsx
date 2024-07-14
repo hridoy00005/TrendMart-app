@@ -5,11 +5,11 @@ import { api } from "../api";
 import { useEffect, useState } from "react";
 
 export const OrderConfirmation = () => {
-const { id } = useParams();
+const { orderId } = useParams();
 const [orders, setOrders] = useState({});
 const fetchSingleOrder = async()=>{
   try {
-    const res = await api.get(`/order/${id}`);
+    const res = await api.get(`/order/${orderId}`);
     setOrders(res?.result);
   } catch (error) {
     console.log(error.message)

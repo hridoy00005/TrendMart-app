@@ -13,7 +13,7 @@ const AccountLayout = ({ children }) => {
     <PublicLayout>
       <div className=" min-h-screen">
         {/* Accounts Categories */}
-        <div className="flex flex-wrap justify-around py-3 ddddddd text-base sm:text-lg font-semibold rounded-lg mb-3">
+        <div className="flex justify-center gap-x-5 py-3 text-base sm:text-lg font-semibold rounded-lg mb-3">
           <Link to="/orders">
             <span className={onActive("/orders")}>Orders</span>
           </Link>
