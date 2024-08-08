@@ -22,7 +22,7 @@ export const OrderItems = ({ cart }) => {
               <p className="text-gray-600 font-normal">{product?.name}</p>
               {product?.sizeAvailable && <p className="font-thin text-sm">Size: {size?.size?.name}</p>}
               <p className="font-thin text-sm">
-                Price: USD{" "}
+                Price: ৳{" "}
                 {product?.discountAvailable
                   ? product?.discountPrice
                   : product?.price}{" "}
@@ -42,7 +42,7 @@ export const OrderItems = ({ cart }) => {
         <div className="flex justify-between items-center">
           <div className="font-bold text-lg">Total Price:</div>
           <div className="w-[62%] h-[1px] bg-gray-600"></div>
-          <div className="font-bold text-gray-00">USD {totalPrice + 80}</div>
+          <div className="font-bold text-gray-00">৳ {totalPrice + 80}</div>
         </div>
       </div>
     </div>

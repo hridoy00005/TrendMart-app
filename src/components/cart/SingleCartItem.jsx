@@ -26,12 +26,12 @@ export const SingleCartItem = ({ cart = {}, idx }) => {
       </div>
       <div className="text-center w-1/5 font-semibold text-sm">
         <span className="cart?.discountAvailable ? 'text-red-600' : ''">
-          USD{" "}
+          ৳{" "}
           {product?.discountAvailable ? product?.discountPrice : product?.price}
         </span>
         {product?.discountAvailable && (
           <span className="text-gray-500">
-            <s> USD {product?.price}</s>
+            <s> ৳ {product?.price}</s>
           </span>
         )}
       </div>
@@ -50,7 +50,7 @@ export const SingleCartItem = ({ cart = {}, idx }) => {
       </div>
 
       <div className="text-center w-1/5 font-semibold text-sm">
-        USD{" "}
+        ৳{" "}
         {(product?.discountAvailable
           ? product?.discountPrice
           : product?.price) * quantity}

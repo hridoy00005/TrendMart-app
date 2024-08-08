@@ -65,16 +65,16 @@ export const CartContainer = () => {
         <div className="w-1/4 px-8">
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-semibold text-sm uppercase">Subtotal</span>
-            <span className="font-semibold text-sm">USD {subtotal}</span>
+            <span className="font-semibold text-sm">৳ {subtotal}</span>
           </div>
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-semibold text-sm uppercase">Shipping</span>
-            <span className="font-semibold text-sm">USD 80</span>
+            <span className="font-semibold text-sm">৳ 80</span>
           </div>
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>USD {subtotal+80}</span>
+              <span>৳ {subtotal+80}</span>
             </div>
           </div>
         </div>
