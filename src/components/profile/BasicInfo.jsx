@@ -43,18 +43,15 @@ const BasicInfo = () => {
   const handleFile = async (e) => {
     setFileLoading(true);
     try {
-      const result = await api.fileUpload(e.target.files[0]);
-      if (result?.success) {
-        setUpdate({ ...update, avatar: result.result.url });
+      const res = await api.fileUpload(e.target.files[0]);
+      if (res?.success) {
+        setUpdate({ ...update, avatar: res.result.url });
       } 
     } catch (error) {
       console.log(error);
     }
     setFileLoading(false);
   };
-
-  // console.log(user?.avatar);
-  // console.log(update);
 
   const disabled =
     !update.name ||

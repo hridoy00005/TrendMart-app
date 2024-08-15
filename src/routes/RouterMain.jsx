@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { authRoutes, privateRoutes, publicRoutes } from "./routers";
 import { NotFound } from "../pages";
-import { PrivateRoute } from "./RouterProtector";
+import { AuthProtector, PrivateProtector } from "./RouterProtector";
 import PublicLayout from "../layouts/PublicLayout";
 
 const RouterMain = () => {
@@ -15,12 +15,12 @@ const RouterMain = () => {
 
         {/* Auth Routes */}
         {authRoutes.map(({ path, element }, idx) => (
-          <Route key={idx} path={path} element={element} />
+          <Route key={idx} path={path} element={<AuthProtector element={element} />} />
         ))}
 
         {/* Private Routes */}
         {privateRoutes.map(({ path, element }, idx) => (
-          <Route key={idx} path={path} element={<PrivateRoute elememnt={element} />} />
+          <Route key={idx} path={path} element={<PrivateProtector element={element} />} />
         ))}
 
         {/* Not Found Page */}

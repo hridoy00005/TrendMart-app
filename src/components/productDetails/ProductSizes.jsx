@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { Button, Modal, Radio, Space } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const ProductSizes = ({
   singleProduct,
   setSelectedSize,
   selectedSize = {},
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const showModal = () => {
-    setIsModalOpen(true);
+  const sizeGuide = () => {
+    navigate("sizeguide");
   };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  // console.log(selectedSize)
+
   return (
     <div className="pb-5">
       <div className="flex items-center">
@@ -42,7 +40,7 @@ const ProductSizes = ({
       </div>
       <div className="">
         <h5>
-          <span className="underline text-sky-600 text-xs cursor-pointer" onClick={showModal}>Size Guide</span>
+          <span className="underline text-sky-600 text-xs cursor-pointer" onClick={sizeGuide}>Size Guide</span>
         </h5>
       </div>
     </div>

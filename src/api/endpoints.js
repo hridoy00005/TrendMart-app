@@ -33,6 +33,6 @@ export const product = {
 }
 
 export const wish = {
-  getWish: "/wish",
-  createWish: "/wish/create"
+  getWish: "/wish/",
+  createWish: "/wish/create",
 }

@@ -15,6 +15,7 @@ import {
   Checkout,
   OrderConfirmation,
   OrderDetails,
+  SizeGuide,
 } from "../pages";
 
 export const publicRoutes = [
@@ -22,6 +23,7 @@ export const publicRoutes = [
   { path: "/categories/:id", element: <CategoryView /> },
   { path: "/subcategory/:id", element: <Subcategories /> },
   { path: "/productdetails/:id", element: <ProductDetails /> },
+  { path: "/productdetails/:id/sizeguide/", element: <SizeGuide /> },
   { path: "/cart/", element: <Cart /> },
 ];
 

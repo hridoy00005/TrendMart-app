@@ -16,8 +16,6 @@ import { notify } from "../utils/notification";
 const ProductDetails = () => {
   const { isAuthenticate } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state?.cart || []);
-  // console.log("cart");
-  // console.log(cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -32,7 +30,9 @@ const ProductDetails = () => {
   // Adding to Cart
   const handleAddToCart = () => {
     let existToCart = false;
-    const selSize = singleProduct?.sizes?.find(({_id})=>_id ===selectedSize);
+    const selSize = singleProduct?.sizes?.find(
+      ({ _id }) => _id === selectedSize
+    );
     cart.map(({ product, size }) => {
       if (product?._id === singleProduct?._id) {
         if (singleProduct?.sizeAvailable && product?.sizeAvailable) {
@@ -49,8 +49,9 @@ const ProductDetails = () => {
         size: selSize,
       };
       dispatch(addCart(payload));
-      notify({ success: true, msg: "The product is added in the cart" });
-    } else notify({ success: false, msg: "This product exists in the cart!" });
+      notify({ success: true, msg: "The product is added to the cart" });
+    } else
+      notify({ success: false, msg: "Product already added to the cart!" });
   };
 
   //Fetch Product
@@ -70,15 +71,24 @@ const ProductDetails = () => {
 
   // Add to Wish list
   const handleFavourite = async () => {
+    const productId = singleProduct?._id;
     if (isAuthenticate) {
-      try {
-        const res = await api.post(wish.createWish, {
-          productId: singleProduct?._id,
-        });
-        notify(res);
-        setIsLiked(true);
-      } catch (error) {
-        console.log(error);
+      if (isLiked) {
+        try {
+          const res = await api.delete(wish.getWish, productId);
+          notify(res);
+          setIsLiked(false);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        try {
+          const res = await api.post(wish.createWish, { productId });
+          notify(res);
+          setIsLiked(true);
+        } catch (error) {
+          console.log(error);
+        }
       }
     } else {
       navigate("/login");
@@ -144,7 +154,8 @@ const ProductDetails = () => {
             <span className="bg-red-600 rounded-lg px-2 text-xs text-white mx-2">
               -
               {Math.ceil(
-                100 - singleProduct?.discountPrice / (singleProduct?.price / 100)
+                100 -
+                  singleProduct?.discountPrice / (singleProduct?.price / 100)
               )}
               %
             </span>
@@ -170,25 +181,31 @@ const ProductDetails = () => {
         <Quantity quantity={quantity} setQuantity={setQuantity} />
 
         {/* Add Buttons */}
-        <div className="text-center font-semibold sm:text-left w-full">
+        <div className="text-center font-semibold sm:text-left w-full flex item-center mt-10">
           <button
             type="button"
-            className="border py-3 px-3 sm:px-4 mb-3 mr-10 rounded duration-[.4s] bg-orange-600 hover:bg-red-600 text-white"
+            className="border py-3 px-3 sm:px-4 mr-10 rounded duration-[.4s] bg-orange-600 hover:bg-red-600 text-white"
             onClick={handleAddToCart}
           >
             Add to Cart
           </button>
           {/* Add to Wishlist */}
           <button
-            className={`hover:scale-105 transition duration-[0.4s] cursor-pointer hover:shadow-lg rounded-lg p-2 ${
+            className={`hover:scale-110 transition duration-[0.4s] cursor-pointer bg-transparent ${
               isLiked ? "text-red-700" : "text-black"
             }`}
             onClick={handleFavourite}
           >
-            {isLiked &&
-              <span><i className="text-3xl mt-[1px] ml-[1px] fa-solid fa-heart"></i></span>
-           }
-           {!isLiked && <span><i className="text-3xl mt-[1px] ml-[1px] fa-regular fa-heart"></i></span>}
+            {isLiked && (
+              <span>
+                <i className="text-3xl mt-[1px] ml-[1px] fa-solid fa-heart"></i>
+              </span>
+            )}
+            {!isLiked && (
+              <span>
+                <i className="text-3xl mt-[1px] ml-[1px] fa-regular fa-heart"></i>
+              </span>
+            )}
           </button>
         </div>
 

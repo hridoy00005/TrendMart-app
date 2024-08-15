@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../api/apiConfigaration";
 import { category } from "../api";
-import { Carousel, Rate, Spin } from "antd";
+import { Carousel, Spin } from "antd";
 import { Link } from "react-router-dom";
 import Title from "../components/commons/Title";
 import { ProductCard } from "../components/commons/ProductCard";
-
-
 
 const TrendingProducts = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
@@ -27,48 +25,6 @@ const TrendingProducts = () => {
     setLoader(false);
   };
 
-  const NextArrow = ({ className, onClick }) => {
-    return (
-      <button
-        className={className}
-        style={{
-          width: "25px",
-          height: "25px",
-          borderRadius: "50%",
-          background: "white",
-          color:'#3c3c3c',
-          opacity:'0.7',
-          border:'1px solid #3c3c3c'
-        }}
-        onClick={onClick}
-
-      >
-        <span className="text-[#3c3c3c]"><i className="fa-solid fa-chevron-right"></i></span>
-        
-      </button>
-    );
-  };
-  const PrevArrow = ({ className, onClick, style }) => {
-    return (
-      <button
-        className={className}
-        style={{
-          ...style,
-          width: "25px",
-          height: "25px",
-          borderRadius: "50%",
-          background: "white",
-          color:'#3c3c3c',
-          opacity:'0.7',
-          border:'1px solid #3c3c3c'
-        }}
-        onClick={onClick}
-      >
-        <i className="fa-solid fa-chevron-left"></i>
-      </button>
-    );
-  };
-
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -80,11 +36,7 @@ const TrendingProducts = () => {
       />
       <Spin spinning={loader} size="large">
         <div className="px-5 rounded-lg border border-[lightgray]">
-          <Carousel
-            {...settings}
-            prevArrow={<PrevArrow />}
-            nextArrow={<NextArrow />}
-          >
+          <Carousel {...settings}>
             {trendingProducts?.map(({ _id, ...product }) => (
               <Link key={_id} className="my-7" to={`/productdetails/${_id}`}>
                 <ProductCard data={product} />
@@ -98,6 +50,48 @@ const TrendingProducts = () => {
 };
 
 export default TrendingProducts;
+
+const NextArrow = ({ className, onClick }) => {
+  return (
+    <button
+      className={className}
+      style={{
+        width: "25px",
+        height: "25px",
+        borderRadius: "50%",
+        background: "white",
+        color: "#3c3c3c",
+        opacity: "0.7",
+        border: "1px solid #3c3c3c",
+      }}
+      onClick={onClick}
+    >
+      <i className="fa-solid fa-chevron-right"></i>
+    </button>
+  );
+};
+const PrevArrow = ({ className, onClick, style }) => {
+  return (
+    <button
+      className={className}
+      style={{
+        ...style,
+        width: "25px",
+        height: "25px",
+        borderRadius: "50%",
+        background: "white",
+        color: "#3c3c3c",
+        opacity: "0.7",
+        border: "1px solid #3c3c3c",
+        marginLeft: "4px",
+      }}
+      onClick={onClick}
+    >
+      <i className="fa-solid fa-chevron-left"></i>
+    </button>
+  );
+};
+
 
 const settings = {
   arrows: true,
@@ -133,4 +127,6 @@ const settings = {
       },
     },
   ],
+  prevArrow: <PrevArrow />,
+  nextArrow: <NextArrow />,
 };

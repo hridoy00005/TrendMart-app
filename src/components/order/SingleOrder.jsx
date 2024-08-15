@@ -18,9 +18,9 @@ export const SingleOrder = ({ data }) => {
 
       <div className="">
           <Tag className="mb-3" color={getStatusColor(data?.status)}>{data?.status}</Tag>
-          <div className="text-sm text-gray-500 flex justify-between">
-            <span>Qtc : {data?.items?.length}</span>
-            <span>Price: {data?.totalPrice}</span>
+          <div className="text-xs 2xl:text-sm text-gray-500 flex justify-between">
+            <span className="mr-[2px]">Qtc : {data?.items?.length}</span>
+            <span className="text-right">Price: {data?.totalPrice}</span>
           </div>
       </div>
     </div>

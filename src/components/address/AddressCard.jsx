@@ -1,5 +1,5 @@
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Avatar, Card, Popconfirm } from 'antd';
+import { Card, Popconfirm } from 'antd';
 import EditForm from './EditForm';
 import { useState } from 'react';
 import { address, api } from '../../api';

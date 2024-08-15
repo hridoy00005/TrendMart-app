@@ -6,6 +6,7 @@ import { ProductCard } from "../components/commons/ProductCard";
 
 const Subcategories = () => {
   const { id } = useParams(); //Subcategory Id
+  
   const [minPrice, setMinprice] = useState(1);
   const [maxPrice, setMaxprice] = useState(1000);
   const [productList, setProductList] = useState([]); //Products

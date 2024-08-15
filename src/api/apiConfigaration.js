@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // axios.defaults.baseURL="https://trend-mart-api.onrender.com";
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "http://localhost:8000";
 
 const token = JSON.parse(localStorage?.getItem("persist:auth"))?.token || "";
 
