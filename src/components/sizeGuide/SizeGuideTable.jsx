@@ -2,7 +2,7 @@ import React from "react";
 
 export const SizeGuideTable = ( {title, columns, datas }) => {
   return (
-    <div>
+    <div className="backdrop-blur-lg rounded-lg p-2">
         <div className="font-semibold text-white text-base xl:text-xl mb-1">{title}</div>
       <table className="border p-5">
         <thead>
