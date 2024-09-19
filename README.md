@@ -2,7 +2,6 @@
 
 ## Description
 TrendMart is a fully responsive e-commerce application designed to sell fashion-related items for men, women, and kids. It features a dynamic admin dashboard for managing products and users.
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Table of Contents
 - [Installation](#installation)
@@ -15,15 +14,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/hridoy00005/trendmart-app-next.git
+   git clone https://github.com/hridoy00005/TrendMart-app.git
 2. Navigate to the project directory:
-   cd trendmart-app-next
+   cd TrendMart-app
 3. Install dependencies:
-   npm install or bun install
+   npm install or yarn install
 
 ## Usage
 To start the development server, run:
-npm run dev or bun dev
+npm run dev or yarn dev
 
 ## Features
 1. User authentication (Login/Signup/Reset Password)
