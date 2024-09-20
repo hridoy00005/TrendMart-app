@@ -1,7 +1,7 @@
 # TrendMart
 
 ## Description
-TrendMart is a fully responsive e-commerce application designed to sell fashion-related items for men, women, and kids. It features a dynamic admin dashboard for managing products and users.
+TrendMart is a fully responsive, web-based e-commerce application designed for selling fashion-related items across categories including men, women, and kids. The platform features a dynamic and intuitive user interface for customers, as well as a robust admin dashboard that allows seamless management of products, users, orders, and inventory. The application ensures an efficient and engaging shopping experience, while the admin section provides advanced controls for overseeing the business operations.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -43,28 +43,28 @@ npm run dev or yarn dev
 ## Screenshots 
 
 Home page with Navbar, Hero section and Trending Items.
-![Home Page Screenshot](./public/images/screenshots/Home.png)
+![Home Page Screenshot](./public/img/screenshots/Home.png)
 
 Footer section with Displayed Some Kid's Items.
-![Footer Section Screenshot](./public/images/screenshots/footer.png)
+![Footer Section Screenshot](./public/img/screenshots/footer.png)
 
 Account page with Order, Favourites, Address and Profile Categories.
-![Account Page Screenshot](./public/images/screenshots/account.png)
+![Account Page Screenshot](./public/img/screenshots/account.png)
 
 Men Categories page with Filtered T-Shirt.
-![Men Categories Screenshot](./public/images/screenshots/men.png)
+![Men Categories Screenshot](./public/img/screenshots/men.png)
 
 Product Details page.
-![Product Details Screenshot](./public/images/screenshots/productdetails.png)
+![Product Details Screenshot](./public/img/screenshots/productdetails.png)
 
 Size Guide page.
-![Sizeguide Screenshot](./public/images/screenshots/sizeguide.png)
+![Sizeguide Screenshot](./public/img/screenshots/sizeguide.png)
 
 Cart page.
-![Cart Page Screenshot](./public/images/screenshots/cart.png)
+![Cart Page Screenshot](./public/img/screenshots/cart.png)
 
 Checkout page.
-![Checkout Page Screenshot](./public/images/screenshots/checkout.png)
+![Checkout Page Screenshot](./public/img/screenshots/checkout.png)
 
 
 
