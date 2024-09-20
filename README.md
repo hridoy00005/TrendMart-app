@@ -43,7 +43,7 @@ npm run dev or yarn dev
 ## Screenshots 
 
 Home page with Navbar, Hero section and Trending Items.
-![Home Page Screenshot](./public/img/screenshots/Home.png)
+![Home Page Screenshot](./public/img/screenshots/home.png)
 
 Footer section with Displayed Some Kid's Items.
 ![Footer Section Screenshot](./public/img/screenshots/footer.png)
